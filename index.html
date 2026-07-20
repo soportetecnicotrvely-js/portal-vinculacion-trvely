@@ -9,9 +9,11 @@
     <title>Portal de Vinculación Trvely</title>
 
     <!-- Bootstrap -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Estilos -->
+
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/styles.css">
 
@@ -19,34 +21,24 @@
 
 <body>
 
-    <!-- ===========================
-            HEADER
-    ============================ -->
+    <!-- =====================================================
+        HEADER
+    ====================================================== -->
 
     <header class="header">
 
         <div class="container">
 
-            <nav class="navbar navbar-expand-lg py-4">
+            <nav class="navbar py-3">
 
                 <a class="navbar-brand" href="#">
 
                     <img
                         src="assets/images/logo.png"
-                        alt="Trvely"
+                        alt="Logo Trvely"
                         class="logo">
 
                 </a>
-
-                <div class="ms-auto">
-
-                    <button class="btn btn-trvely">
-
-                        Agregar Asesor
-
-                    </button>
-
-                </div>
 
             </nav>
 
@@ -55,15 +47,17 @@
     </header>
 
 
-    <!-- ===========================
-            HERO
-    ============================ -->
+    <!-- =====================================================
+        HERO
+    ====================================================== -->
 
     <section class="hero">
 
         <div class="container">
 
             <div class="row align-items-center">
+
+                <!-- Texto -->
 
                 <div class="col-lg-6">
 
@@ -83,12 +77,21 @@
 
                         Bienvenido al Portal de Vinculación Comercial de Trvely.
 
-                        Complete el siguiente formulario para iniciar su proceso
-                        de vinculación como Asesor Comercial o Director Comercial.
+                        Desde este portal podrás realizar tu proceso de registro
+                        como Asesor Comercial o Director Comercial.
 
                     </p>
 
-                    <button class="btn btn-trvely btn-lg mt-4">
+                    <p>
+
+                        Completa la información solicitada y adjunta la documentación
+                        requerida para iniciar el proceso de validación.
+
+                    </p>
+
+                    <button
+                        id="btnComenzar"
+                        class="btn btn-trvely mt-4">
 
                         Comenzar Registro
 
@@ -96,12 +99,15 @@
 
                 </div>
 
+
+                <!-- Imagen -->
+
                 <div class="col-lg-6 text-center">
 
                     <img
                         src="assets/images/hero.png"
-                        class="img-fluid hero-image"
-                        alt="Registro de Asesores">
+                        alt="Registro de Asesores"
+                        class="hero-image">
 
                 </div>
 
@@ -112,28 +118,32 @@
     </section>
 
 
-    <!-- ===========================
-            CONTENIDO
-    ============================ -->
 
-    <main>
+    <!-- =====================================================
+        SECCIÓN TEMPORAL
+    ====================================================== -->
 
-        <section class="container py-5">
+    <section class="py-5">
+
+        <div class="container">
 
             <div class="card card-coming">
 
-                <div class="card-body text-center py-5">
+                <div class="card-body text-center p-5">
 
                     <h2>
 
-                        Próximamente iniciaremos el formulario.
+                        Portal en Construcción
 
                     </h2>
+
+                    <br>
 
                     <p>
 
                         En el siguiente Sprint construiremos el formulario
-                        conectado posteriormente con Supabase y n8n.
+                        de vinculación completamente conectado con la base
+                        de datos de Supabase.
 
                     </p>
 
@@ -141,24 +151,21 @@
 
             </div>
 
-        </section>
+        </div>
 
-    </main>
+    </section>
 
 
-    <!-- ===========================
-            FOOTER
-    ============================ -->
+
+    <!-- =====================================================
+        FOOTER
+    ====================================================== -->
 
     <footer class="footer">
 
-        <div class="container">
+        <div class="container text-center">
 
-            <div class="text-center">
-
-                © 2025 Trvely SAS · Portal de Vinculación
-
-            </div>
+            © 2025 Trvely SAS · Portal de Vinculación
 
         </div>
 
