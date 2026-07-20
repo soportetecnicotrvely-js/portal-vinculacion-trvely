@@ -10,7 +10,9 @@
 
 @font-face {
     font-family: "Extenda";
-    src: url("../assets/fonts/Extenda-60-Giga.otf") format("opentype");
+    src: url("../assets/fonts/Extenda-60-Giga.otf");
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
@@ -75,15 +77,11 @@ body{
 
 h1{
 
-    font-family:var(--font-title);
+    font-family:"Extenda", Arial, sans-serif;
 
-    font-size:var(--fs-xxl);
+    font-size:4rem;
 
-    color:var(--black);
-
-    margin-bottom:25px;
-
-    line-height:1.15;
+    line-height:1;
 
 }
 
