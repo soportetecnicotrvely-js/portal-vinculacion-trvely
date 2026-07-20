@@ -1,1 +1,23 @@
+:root{
 
+    /* Colores Corporativos */
+
+    --primary:#B31952;
+    --primary-dark:#8F1240;
+    --secondary:#FDF4ED;
+
+    --text:#202020;
+
+    --gray:#F4F4F4;
+
+    --white:#FFFFFF;
+
+    /* Bordes */
+
+    --radius:20px;
+
+    /* Sombras */
+
+    --shadow:0 12px 25px rgba(0,0,0,.08);
+
+}
