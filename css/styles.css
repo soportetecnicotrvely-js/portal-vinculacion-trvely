@@ -1,7 +1,30 @@
-/* =====================================================
-   PORTAL DE VINCULACIÓN TRVELY
-   styles.css v1.0
-===================================================== */
+/*======================================================
+VARIABLES GENERALES
+======================================================*/
+
+:root{
+
+    --primary:#C30045;
+
+    --primary-dark:#A6003B;
+
+    --background:#FFFFFF;
+
+    --text:#111111;
+
+    --gray:#F4F4F4;
+
+    --border:#E6E6E6;
+
+    --font-regular:'Montserrat';
+
+    --font-semibold:'MontserratSemiBold';
+
+    --font-bold:'MontserratBold';
+
+    --font-extra-bold:'MontserratExtraBold';
+
+}
 
 
 /*======================================================
@@ -9,28 +32,52 @@ FUENTES
 ======================================================*/
 
 @font-face{
+
     font-family:'Extenda';
-    src:url('../assets/fonts/Extenda-60-Giga.otf');
+
+    src:url('../assets/fonts/Extenda-60-Giga.otf')
+    format('opentype');
+
 }
 
+
 @font-face{
+
     font-family:'Montserrat';
-    src:url('../assets/fonts/Montserrat-Regular.ttf');
+
+    src:url('../assets/fonts/Montserrat-Regular.ttf')
+    format('truetype');
+
 }
 
+
 @font-face{
+
     font-family:'MontserratBold';
-    src:url('../assets/fonts/Montserrat-Bold.ttf');
+
+    src:url('../assets/fonts/Montserrat-Bold.ttf')
+    format('truetype');
+
 }
 
+
 @font-face{
+
     font-family:'MontserratSemiBold';
-    src:url('../assets/fonts/Montserrat-SemiBold.ttf');
+
+    src:url('../assets/fonts/Montserrat-SemiBold.ttf')
+    format('truetype');
+
 }
 
+
 @font-face{
+
     font-family:'MontserratExtraBold';
-    src:url('../assets/fonts/Montserrat-ExtraBold.ttf');
+
+    src:url('../assets/fonts/Montserrat-ExtraBold.ttf')
+    format('truetype');
+
 }
 
 
@@ -48,19 +95,21 @@ RESET
 
 }
 
+
 body{
 
     background:var(--background);
 
-    color:var(--text-color);
+    color:var(--text);
 
     font-family:var(--font-regular);
 
 }
 
+
 .container{
 
-    max-width:1320px;
+    max-width:1200px;
 
 }
 
@@ -71,25 +120,27 @@ HEADER
 
 .header{
 
-    background:var(--white);
+    background:#FFFFFF;
 
-    border-bottom:1px solid #EFEFEF;
+    border-bottom:1px solid #EEEEEE;
 
 }
 
+
 .header-content{
+
+    height:100px;
 
     display:flex;
 
     align-items:center;
 
-    height:95px;
-
 }
+
 
 .logo{
 
-    height:58px;
+    height:68px;
 
     width:auto;
 
@@ -97,70 +148,32 @@ HEADER
 
 
 /*======================================================
-SECCIONES
-======================================================*/
-
-section{
-
-    padding:70px 0;
-
-}
-
-
-/*======================================================
-RESPONSIVE
-======================================================*/
-
-@media(max-width:768px){
-
-.header-content{
-
-    justify-content:center;
-
-}
-
-.logo{
-
-    height:48px;
-
-}
-
-}
-/*======================================================
 REGISTRO DE ASESORES
 ======================================================*/
 
 .registro{
 
-    padding-top:45px;
+    padding-top:55px;
 
-    padding-bottom:30px;
-
-}
-
-.registro-container{
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
+    padding-bottom:70px;
 
 }
+
 
 .titulo-registro{
 
-    font-family:"MontserratExtraBold";
+    font-family:var(--font-extra-bold);
 
-    font-size:56px;
+    font-size:58px;
 
     color:var(--primary);
 
-    margin-bottom:30px;
-
     text-align:center;
 
+    margin-bottom:40px;
+
 }
+
 
 .hero-container{
 
@@ -170,9 +183,8 @@ REGISTRO DE ASESORES
 
     justify-content:center;
 
-    width:100%;
-
 }
+
 
 .hero-bg{
 
@@ -182,63 +194,440 @@ REGISTRO DE ASESORES
 
     height:78%;
 
-    background:#FFF2E8;
+    top:60px;
+
+    background:#FFF1E5;
 
     border-radius:24px;
 
-    top:60px;
-
-    z-index:0;
-
 }
+
 
 .hero-image{
 
     position:relative;
 
+    z-index:2;
+
     width:100%;
 
-    max-width:860px;
+    max-width:900px;
 
     border-radius:18px;
 
-    z-index:2;
-
 }
+
+
 /*======================================================
-RESPONSIVE REGISTRO
+SECCIONES
 ======================================================*/
 
-@media(max-width:992px){
+.seccion-formulario{
 
-.titulo-principal{
-
-    font-size:3rem;
+    padding:80px 0;
 
 }
 
-.hero-principal{
 
-    max-width:100%;
+.section-heading{
 
-}
+    text-align:center;
 
-}
-
-@media(max-width:576px){
-
-.registro{
-
-    padding-top:25px;
+    margin-bottom:45px;
 
 }
 
-.titulo-principal{
 
-    font-size:2.1rem;
+.section-heading h2{
+
+    font-family:var(--font-extra-bold);
+
+    font-size:48px;
+
+    margin-bottom:15px;
+
+}
+
+
+.section-heading p{
+
+    font-size:16px;
+
+    color:#666;
+
+}
+
+
+/*======================================================
+TARJETA FORMULARIO
+======================================================*/
+
+.form-card{
+
+    background:#FFFFFF;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:45px;
+
+    box-shadow:0 5px 25px rgba(0,0,0,.04);
+
+}
+
+
+.form-card h3{
+
+    font-family:var(--font-extra-bold);
+
+    color:var(--primary);
+
+    margin-bottom:30px;
+
+}
+
+
+.form-group{
+
+    margin-bottom:24px;
+
+}
+
+
+.form-group label{
+
+    display:block;
+
+    font-family:var(--font-semibold);
+
+    font-size:13px;
+
+    margin-bottom:8px;
+
+}
+
+
+.form-control,
+
+.form-select{
+
+    border-radius:10px;
+
+    border:1px solid #DCDCDC;
+
+    padding:12px 15px;
+
+    min-height:48px;
+
+}
+
+
+.form-control:focus,
+
+.form-select:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 3px rgba(195,0,69,.1);
+
+}
+
+
+/*======================================================
+SUBSECCIONES
+======================================================*/
+
+.subsection{
+
+    border-top:1px solid #EEEEEE;
+
+    margin-top:45px;
+
+    padding-top:40px;
+
+}
+
+
+.subsection h3{
+
+    margin-bottom:30px;
+
+}
+
+
+/*======================================================
+TEXTAREAS
+======================================================*/
+
+textarea{
+
+    resize:vertical;
+
+}
+
+
+/*======================================================
+DOCUMENTOS
+======================================================*/
+
+.documentos p{
+
+    color:#666;
+
+    margin-bottom:30px;
+
+}
+
+
+.file-group{
+
+    margin-bottom:20px;
+
+}
+
+
+.file-group label{
+
+    display:block;
+
+    font-family:var(--font-semibold);
+
+    margin-bottom:8px;
+
+}
+
+
+.file-group input{
+
+    border-radius:10px;
+
+}
+
+
+/*======================================================
+AUTORIZACIONES
+======================================================*/
+
+.autorizaciones{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+
+.form-check{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+}
+
+
+.form-check-input{
+
+    margin-top:4px;
+
+}
+
+
+.form-check-input:checked{
+
+    background-color:var(--primary);
+
+    border-color:var(--primary);
+
+}
+
+
+/*======================================================
+BOTÓN FINAL
+======================================================*/
+
+.form-submit{
+
+    border-top:1px solid #EEEEEE;
+
+    margin-top:50px;
+
+    padding-top:50px;
+
+    text-align:center;
+
+}
+
+
+.form-submit h2{
+
+    font-family:var(--font-extra-bold);
+
+    font-size:40px;
 
     margin-bottom:25px;
 
 }
+
+
+.btn-primary-custom{
+
+    background:var(--primary);
+
+    color:#FFFFFF;
+
+    border:none;
+
+    border-radius:30px;
+
+    padding:15px 55px;
+
+    font-family:var(--font-semibold);
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.btn-primary-custom:hover{
+
+    background:var(--primary-dark);
+
+    transform:translateY(-2px);
+
+}
+
+
+/*======================================================
+FOOTER
+======================================================*/
+
+.footer{
+
+    text-align:center;
+
+    padding:30px;
+
+    border-top:1px solid #EEEEEE;
+
+    color:#777;
+
+}
+
+
+/*======================================================
+RESPONSIVE
+======================================================*/
+
+@media(max-width:992px){
+
+    .titulo-registro{
+
+        font-size:46px;
+
+    }
+
+
+    .section-heading h2{
+
+        font-size:40px;
+
+    }
+
+
+}
+
+
+@media(max-width:768px){
+
+    .logo{
+
+        height:58px;
+
+    }
+
+
+    .form-card{
+
+        padding:25px;
+
+    }
+
+
+    .form-submit h2{
+
+        font-size:32px;
+
+    }
+
+
+}
+
+
+@media(max-width:576px){
+
+    .registro{
+
+        padding-top:35px;
+
+    }
+
+
+    .titulo-registro{
+
+        font-size:34px;
+
+        line-height:1.1;
+
+    }
+
+
+    .section-heading h2{
+
+        font-size:32px;
+
+    }
+
+
+    .section-heading p{
+
+        font-size:14px;
+
+    }
+
+
+    .hero-bg{
+
+        top:25px;
+
+    }
+
+
+    .form-card{
+
+        padding:20px;
+
+    }
+
+
+    .form-submit h2{
+
+        font-size:27px;
+
+    }
+
+
+    .btn-primary-custom{
+
+        width:100%;
+
+    }
 
 }
