@@ -4,132 +4,1012 @@
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Portal de Vinculación Trvely</title>
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Estilos -->
+    <!-- Bootstrap -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+
+    <!-- Estilos del proyecto -->
+
     <link rel="stylesheet" href="css/variables.css">
+
     <link rel="stylesheet" href="css/styles.css">
+
 
 </head>
 
+
 <body>
 
-    <!-- ======================================================
-                            HEADER
-    ======================================================= -->
 
-    <header class="header">
+<!-- =====================================================
+                         HEADER
+===================================================== -->
 
-        <div class="container">
-
-            <div class="header-content">
-
-                <img
-                    src="assets/images/logo.png"
-                    alt="Trvely"
-                    class="logo">
-
-            </div>
-
-        </div>
-
-    </header>
-
-
-    <!-- ======================================================
-                    REGISTRO DE ASESORES
-    ======================================================= -->
-
-  <section id="registro" class="registro">
+<header class="header">
 
     <div class="container">
 
-        <div class="registro-container">
+        <div class="header-content">
 
-            <h1 class="titulo-registro">
+            <img
+                src="assets/images/logo.png"
+                alt="Trvely"
+                class="logo">
 
-                Registro de Asesores
+        </div>
 
-            </h1>
+    </div>
 
-            <div class="hero-container">
+</header>
 
-                <div class="hero-bg"></div>
 
-                <img
-                    src="assets/images/hero.png"
-                    alt="Registro de Asesores"
-                    class="hero-image">
+<main>
 
-            </div>
+
+<!-- =====================================================
+                REGISTRO DE ASESORES
+===================================================== -->
+
+<section class="registro">
+
+    <div class="container">
+
+        <h1 class="titulo-registro">
+
+            Registro de Asesores
+
+        </h1>
+
+
+        <div class="hero-container">
+
+            <div class="hero-bg"></div>
+
+
+            <img
+                src="assets/images/hero.png"
+                alt="Asesora Trvely"
+                class="hero-image">
 
         </div>
 
     </div>
 
 </section>
-    <!-- ======================================================
-                    IMAGEN PRINCIPAL
-    ======================================================= -->
-
-    <section id="hero">
-
-    </section>
 
 
-    <!-- ======================================================
+<!-- =====================================================
                 INFORMACIÓN PERSONAL
-    ======================================================= -->
+===================================================== -->
 
-    <section id="informacion-personal">
+<section class="seccion-formulario">
 
-    </section>
-
-
-    <!-- ======================================================
-                INFORMACIÓN COMERCIAL
-    ======================================================= -->
-
-    <section id="informacion-comercial">
-
-    </section>
+    <div class="container">
 
 
-    <!-- ======================================================
+        <div class="section-heading">
+
+            <h2>
+
+                Información Personal
+
+            </h2>
+
+
+            <p>
+
+                Ingresa tus datos personales y de contacto en los siguientes campos.
+
+            </p>
+
+        </div>
+
+
+        <div class="form-card">
+
+
+            <h3>
+
+                Datos Personales
+
+            </h3>
+
+
+            <form id="formulario-candidato">
+
+
+                <!-- NOMBRE COMPLETO -->
+
+                <div class="row">
+
+
+                    <div class="col-md-6 form-group">
+
+                        <label for="nombre_completo">
+
+                            Nombre Completo
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="nombre_completo"
+                            name="nombre_completo"
+                            class="form-control"
+                            required>
+
+                    </div>
+
+
+                    <!-- FECHA NACIMIENTO -->
+
+                    <div class="col-md-6 form-group">
+
+                        <label for="fecha_nacimiento">
+
+                            Fecha de Nacimiento
+
+                        </label>
+
+
+                        <input
+                            type="date"
+                            id="fecha_nacimiento"
+                            name="fecha_nacimiento"
+                            class="form-control">
+
+                    </div>
+
+
+                    <!-- LUGAR NACIMIENTO -->
+
+                    <div class="col-md-6 form-group">
+
+                        <label for="lugar_nacimiento">
+
+                            Lugar de Nacimiento
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="lugar_nacimiento"
+                            name="lugar_nacimiento"
+                            class="form-control">
+
+                    </div>
+
+
+                    <!-- NACIONALIDAD -->
+
+                    <div class="col-md-6 form-group">
+
+                        <label for="nacionalidad">
+
+                            Nacionalidad
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="nacionalidad"
+                            name="nacionalidad"
+                            class="form-control">
+
+                    </div>
+
+
+                    <!-- CIUDAD RESIDENCIA -->
+
+                    <div class="col-md-6 form-group">
+
+                        <label for="ciudad_residencia">
+
+                            Ciudad de Residencia
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="ciudad_residencia"
+                            name="ciudad_residencia"
+                            class="form-control">
+
+                    </div>
+
+
+                    <!-- DIRECCIÓN -->
+
+                    <div class="col-md-6 form-group">
+
+                        <label for="direccion_residencia">
+
+                            Dirección de Residencia
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="direccion_residencia"
+                            name="direccion_residencia"
+                            class="form-control">
+
+                    </div>
+
+
+                    <!-- CELULAR -->
+
+                    <div class="col-md-6 form-group">
+
+                        <label for="celular">
+
+                            Número Celular
+
+                        </label>
+
+
+                        <input
+                            type="tel"
+                            id="celular"
+                            name="celular"
+                            class="form-control">
+
+                    </div>
+
+
+                    <!-- CORREO -->
+
+                    <div class="col-md-6 form-group">
+
+                        <label for="correo_personal">
+
+                            Correo Electrónico Personal
+
+                        </label>
+
+
+                        <input
+                            type="email"
+                            id="correo_personal"
+                            name="correo_personal"
+                            class="form-control"
+                            required>
+
+                    </div>
+
+
+                    <!-- CONTACTO EMERGENCIA -->
+
+                    <div class="col-md-6 form-group">
+
+                        <label for="contacto_emergencia">
+
+                            Contacto de Emergencia
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="contacto_emergencia"
+                            name="contacto_emergencia"
+                            class="form-control">
+
+                    </div>
+
+
+                    <!-- PARENTESCO -->
+
+                    <div class="col-md-6 form-group">
+
+                        <label for="parentesco_emergencia">
+
+                            Parentesco
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="parentesco_emergencia"
+                            name="parentesco_emergencia"
+                            class="form-control">
+
+                    </div>
+
+
+                    <!-- TELEFONO EMERGENCIA -->
+
+                    <div class="col-md-6 form-group">
+
+                        <label for="telefono_emergencia">
+
+                            Teléfono de Emergencia
+
+                        </label>
+
+
+                        <input
+                            type="tel"
+                            id="telefono_emergencia"
+                            name="telefono_emergencia"
+                            class="form-control">
+
+                    </div>
+
+
+                </div>
+
+
+<!-- =====================================================
+                INFORMACIÓN DEL PERFIL
+===================================================== -->
+
+
+                <div class="subsection">
+
+
+                    <h3>
+
+                        Información del Perfil
+
+                    </h3>
+
+
+                    <!-- PERFIL -->
+
+                    <div class="form-group">
+
+                        <label for="perfil_aplica">
+
+                            Perfil al que Aplica
+
+                        </label>
+
+
+                        <select
+                            id="perfil_aplica"
+                            name="perfil_aplica"
+                            class="form-select"
+                            required>
+
+
+                            <option value="">
+
+                                Selecciona una opción
+
+                            </option>
+
+
+                            <option value="asesor_comercial">
+
+                                Asesor Comercial
+
+                            </option>
+
+
+                            <option value="director_comercial">
+
+                                Director Comercial
+
+                            </option>
+
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="row">
+
+
+                        <!-- CIUDAD LABOR -->
+
+                        <div class="col-md-6 form-group">
+
+                            <label for="ciudad_trabajo">
+
+                                Ciudad, Zona o Mercado Principal
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="ciudad_trabajo"
+                                name="ciudad_trabajo"
+                                class="form-control">
+
+                        </div>
+
+
+                        <!-- EXPERIENCIA COMERCIAL -->
+
+                        <div class="col-md-6 form-group">
+
+                            <label for="experiencia_comercial">
+
+                                Experiencia Comercial
+
+                            </label>
+
+
+                            <textarea
+                                id="experiencia_comercial"
+                                name="experiencia_comercial"
+                                class="form-control"
+                                rows="4">
+
+                            </textarea>
+
+                        </div>
+
+
+                        <!-- EXPERIENCIA TURISMO -->
+
+                        <div class="col-md-6 form-group">
+
+                            <label for="experiencia_turismo">
+
+                                Experiencia en Turismo
+
+                            </label>
+
+
+                            <textarea
+                                id="experiencia_turismo"
+                                name="experiencia_turismo"
+                                class="form-control"
+                                rows="4">
+
+                            </textarea>
+
+                        </div>
+
+
+                        <!-- ACTIVIDAD ACTUAL -->
+
+                        <div class="col-md-6 form-group">
+
+                            <label for="empresa_actividad_actual">
+
+                                Empresa o Actividad Actual
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="empresa_actividad_actual"
+                                name="empresa_actividad_actual"
+                                class="form-control">
+
+                        </div>
+
+
+                        <!-- REFERENTE -->
+
+                        <div class="col-md-6 form-group">
+
+                            <label for="referente_vinculacion">
+
+                                Director o Referente que lo Vincula
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="referente_vinculacion"
+                                name="referente_vinculacion"
+                                class="form-control">
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+<!-- =====================================================
+                INFORMACIÓN BANCARIA
+===================================================== -->
+
+
+                <div class="subsection">
+
+
+                    <h3>
+
+                        Información Bancaria y Tributaria
+
+                    </h3>
+
+
+                    <div class="row">
+
+
+                        <div class="col-md-6 form-group">
+
+                            <label for="banco">
+
+                                Entidad Bancaria
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="banco"
+                                name="banco"
+                                class="form-control">
+
+                        </div>
+
+
+                        <div class="col-md-6 form-group">
+
+                            <label for="tipo_cuenta">
+
+                                Tipo de Cuenta
+
+                            </label>
+
+
+                            <select
+                                id="tipo_cuenta"
+                                name="tipo_cuenta"
+                                class="form-select">
+
+
+                                <option value="">
+
+                                    Selecciona una opción
+
+                                </option>
+
+
+                                <option value="ahorros">
+
+                                    Cuenta de Ahorros
+
+                                </option>
+
+
+                                <option value="corriente">
+
+                                    Cuenta Corriente
+
+                                </option>
+
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="col-md-6 form-group">
+
+                            <label for="numero_cuenta">
+
+                                Número de Cuenta
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="numero_cuenta"
+                                name="numero_cuenta"
+                                class="form-control">
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+<!-- =====================================================
                     DOCUMENTOS
-    ======================================================= -->
-
-    <section id="documentos">
-
-    </section>
+===================================================== -->
 
 
-    <!-- ======================================================
+                <div class="subsection documentos">
+
+
+                    <h3>
+
+                        Adjunta los Archivos
+
+                    </h3>
+
+
+                    <p>
+
+                        Para continuar el proceso, adjunta los documentos solicitados.
+
+                    </p>
+
+
+                    <!-- CEDULA -->
+
+                    <div class="file-group">
+
+                        <label>
+
+                            Cédula de Ciudadanía
+
+                        </label>
+
+
+                        <input
+                            type="file"
+                            id="documento_cedula"
+                            name="documento_cedula"
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            class="form-control">
+
+                    </div>
+
+
+                    <!-- HOJA DE VIDA -->
+
+                    <div class="file-group">
+
+                        <label>
+
+                            Hoja de Vida
+
+                        </label>
+
+
+                        <input
+                            type="file"
+                            id="hoja_de_vida"
+                            name="hoja_de_vida"
+                            accept=".pdf"
+                            class="form-control">
+
+                    </div>
+
+
+                    <!-- CERTIFICACION BANCARIA -->
+
+                    <div class="file-group">
+
+                        <label>
+
+                            Certificación Bancaria
+
+                        </label>
+
+
+                        <input
+                            type="file"
+                            id="certificacion_bancaria"
+                            name="certificacion_bancaria"
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            class="form-control">
+
+                    </div>
+
+
+                    <!-- RUT -->
+
+                    <div class="file-group">
+
+                        <label>
+
+                            RUT
+
+                        </label>
+
+
+                        <input
+                            type="file"
+                            id="rut"
+                            name="rut"
+                            accept=".pdf"
+                            class="form-control">
+
+                    </div>
+
+
+                    <!-- POLICIA -->
+
+                    <div class="file-group">
+
+                        <label>
+
+                            Certificado de Antecedentes de Policía
+
+                        </label>
+
+
+                        <input
+                            type="file"
+                            id="antecedentes_policia"
+                            name="antecedentes_policia"
+                            accept=".pdf"
+                            class="form-control">
+
+                    </div>
+
+
+                    <!-- PROCURADURIA -->
+
+                    <div class="file-group">
+
+                        <label>
+
+                            Certificado de Procuraduría
+
+                        </label>
+
+
+                        <input
+                            type="file"
+                            id="antecedentes_procuraduria"
+                            name="antecedentes_procuraduria"
+                            accept=".pdf"
+                            class="form-control">
+
+                    </div>
+
+
+                    <!-- CONTRALORIA -->
+
+                    <div class="file-group">
+
+                        <label>
+
+                            Certificado de Contraloría
+
+                        </label>
+
+
+                        <input
+                            type="file"
+                            id="antecedentes_contraloria"
+                            name="antecedentes_contraloria"
+                            accept=".pdf"
+                            class="form-control">
+
+                    </div>
+
+
+                    <!-- PROCESOS JUDICIALES -->
+
+                    <div class="file-group">
+
+                        <label>
+
+                            Certificado de Procesos Judiciales
+
+                        </label>
+
+
+                        <input
+                            type="file"
+                            id="procesos_judiciales"
+                            name="procesos_judiciales"
+                            accept=".pdf"
+                            class="form-control">
+
+                    </div>
+
+
+                </div>
+
+
+<!-- =====================================================
                     AUTORIZACIONES
-    ======================================================= -->
-
-    <section id="autorizaciones">
-
-    </section>
+===================================================== -->
 
 
-    <!-- ======================================================
-                        FOOTER
-    ======================================================= -->
-
-    <footer>
-
-    </footer>
+                <div class="subsection autorizaciones">
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+                    <h3>
 
-    <script src="js/app.js"></script>
+                        Autorizaciones
+
+                    </h3>
+
+
+                    <div class="form-check">
+
+
+                        <input
+                            type="checkbox"
+                            id="tratamiento_datos"
+                            name="tratamiento_datos"
+                            class="form-check-input"
+                            required>
+
+
+                        <label
+                            for="tratamiento_datos"
+                            class="form-check-label">
+
+                            Autorizo el tratamiento de mis datos personales.
+
+                        </label>
+
+
+                    </div>
+
+
+                    <div class="form-check">
+
+
+                        <input
+                            type="checkbox"
+                            id="consulta_antecedentes"
+                            name="consulta_antecedentes"
+                            class="form-check-input"
+                            required>
+
+
+                        <label
+                            for="consulta_antecedentes"
+                            class="form-check-label">
+
+                            Autorizo la consulta de antecedentes y validaciones.
+
+                        </label>
+
+
+                    </div>
+
+
+                    <div class="form-check">
+
+
+                        <input
+                            type="checkbox"
+                            id="terminos_uso"
+                            name="terminos_uso"
+                            class="form-check-input"
+                            required>
+
+
+                        <label
+                            for="terminos_uso"
+                            class="form-check-label">
+
+                            Acepto los términos de uso del portal.
+
+                        </label>
+
+
+                    </div>
+
+
+                    <div class="form-check">
+
+
+                        <input
+                            type="checkbox"
+                            id="veracidad_informacion"
+                            name="veracidad_informacion"
+                            class="form-check-input"
+                            required>
+
+
+                        <label
+                            for="veracidad_informacion"
+                            class="form-check-label">
+
+                            Declaro que la información suministrada es verdadera.
+
+                        </label>
+
+
+                    </div>
+
+
+                    <div class="form-check">
+
+
+                        <input
+                            type="checkbox"
+                            id="comunicaciones"
+                            name="comunicaciones"
+                            class="form-check-input">
+
+
+                        <label
+                            for="comunicaciones"
+                            class="form-check-label">
+
+                            Acepto recibir comunicaciones relacionadas con el proceso.
+
+                        </label>
+
+
+                    </div>
+
+
+                </div>
+
+
+<!-- =====================================================
+                    BOTÓN FINAL
+===================================================== -->
+
+
+                <div class="form-submit">
+
+
+                    <h2>
+
+                        ¿Listo para iniciar tu viaje?
+
+                    </h2>
+
+
+                    <button
+                        type="submit"
+                        class="btn-primary-custom">
+
+                        Confirmar y despegar
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =====================================================
+                         FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <p>
+
+        © Trvely
+
+    </p>
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="js/app.js"></script>
+
 
 </body>
 
