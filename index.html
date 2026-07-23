@@ -45,6 +45,8 @@
                 alt="Trvely"
                 class="logo">
 
+            <a href="#" class="btn-header">Agregar Asesor</a>
+
         </div>
 
     </div>
@@ -147,6 +149,49 @@
                             name="nombre_completo"
                             class="form-control"
                             required>
+
+                    </div>
+
+
+                    <!-- TIPO Y NUMERO DE DOCUMENTO -->
+
+                    <div class="col-md-6 form-group">
+
+                        <label for="numero_docum">
+
+                            Documento de Identidad
+
+                        </label>
+
+
+                        <div class="documento-compuesto">
+
+                            <select
+                                id="tipo_documento"
+                                name="tipo_documento"
+                                class="form-select"
+                                required>
+
+                                <option value="">Tipo</option>
+
+                                <option value="CC">C.C</option>
+
+                                <option value="CE">C.E</option>
+
+                                <option value="TI">T.I</option>
+
+                                <option value="PA">Pasaporte</option>
+
+                            </select>
+
+                            <input
+                                type="text"
+                                id="numero_docum"
+                                name="numero_docum"
+                                class="form-control"
+                                required>
+
+                        </div>
 
                     </div>
 
@@ -648,170 +693,221 @@
                     </p>
 
 
-                    <!-- CEDULA -->
+                    <div class="documentos-layout">
 
-                    <div class="file-group">
 
-                        <label>
+                        <div class="documentos-imagen">
 
-                            Cédula de Ciudadanía
+                            <img src="assets/images/documentos.png" alt="Trvely">
 
-                        </label>
+                        </div>
 
 
-                        <input
-                            type="file"
-                            id="documento_cedula"
-                            name="documento_cedula"
-                            accept=".pdf,.jpg,.jpeg,.png"
-                            class="form-control">
+                        <div class="documentos-campos">
 
-                    </div>
 
+                            <!-- CEDULA -->
 
-                    <!-- HOJA DE VIDA -->
+                            <div class="file-group">
 
-                    <div class="file-group">
+                                <label class="file-label" for="documento_cedula">
 
-                        <label>
+                                    Cédula de Ciudadanía
 
-                            Hoja de Vida
+                                </label>
 
-                        </label>
+                                <label class="file-upload-btn" for="documento_cedula" id="label_documento_cedula">
 
+                                    <span class="icono">⬆</span> Adjuntar archivo aquí
 
-                        <input
-                            type="file"
-                            id="hoja_de_vida"
-                            name="hoja_de_vida"
-                            accept=".pdf"
-                            class="form-control">
+                                </label>
 
-                    </div>
+                                <input
+                                    type="file"
+                                    id="documento_cedula"
+                                    name="documento_cedula"
+                                    accept=".pdf,.jpg,.jpeg,.png">
 
+                            </div>
 
-                    <!-- CERTIFICACION BANCARIA -->
 
-                    <div class="file-group">
+                            <!-- HOJA DE VIDA -->
 
-                        <label>
+                            <div class="file-group">
 
-                            Certificación Bancaria
+                                <label class="file-label" for="hoja_de_vida">
 
-                        </label>
+                                    Hoja de Vida
 
+                                </label>
 
-                        <input
-                            type="file"
-                            id="certificacion_bancaria"
-                            name="certificacion_bancaria"
-                            accept=".pdf,.jpg,.jpeg,.png"
-                            class="form-control">
+                                <label class="file-upload-btn" for="hoja_de_vida" id="label_hoja_de_vida">
 
-                    </div>
+                                    <span class="icono">⬆</span> Adjuntar archivo aquí
 
+                                </label>
 
-                    <!-- RUT -->
+                                <input
+                                    type="file"
+                                    id="hoja_de_vida"
+                                    name="hoja_de_vida"
+                                    accept=".pdf">
 
-                    <div class="file-group">
+                            </div>
 
-                        <label>
 
-                            RUT
+                            <!-- CERTIFICACION BANCARIA -->
 
-                        </label>
+                            <div class="file-group">
 
+                                <label class="file-label" for="certificacion_bancaria">
 
-                        <input
-                            type="file"
-                            id="rut"
-                            name="rut"
-                            accept=".pdf"
-                            class="form-control">
+                                    Certificación Bancaria
 
-                    </div>
+                                </label>
 
+                                <label class="file-upload-btn" for="certificacion_bancaria" id="label_certificacion_bancaria">
 
-                    <!-- POLICIA -->
+                                    <span class="icono">⬆</span> Adjuntar archivo aquí
 
-                    <div class="file-group">
+                                </label>
 
-                        <label>
+                                <input
+                                    type="file"
+                                    id="certificacion_bancaria"
+                                    name="certificacion_bancaria"
+                                    accept=".pdf,.jpg,.jpeg,.png">
 
-                            Certificado de Antecedentes de Policía
+                            </div>
 
-                        </label>
 
+                            <!-- RUT -->
 
-                        <input
-                            type="file"
-                            id="antecedentes_policia"
-                            name="antecedentes_policia"
-                            accept=".pdf"
-                            class="form-control">
+                            <div class="file-group">
 
-                    </div>
+                                <label class="file-label" for="rut">
 
+                                    RUT
 
-                    <!-- PROCURADURIA -->
+                                </label>
 
-                    <div class="file-group">
+                                <label class="file-upload-btn" for="rut" id="label_rut">
 
-                        <label>
+                                    <span class="icono">⬆</span> Adjuntar archivo aquí
 
-                            Certificado de Procuraduría
+                                </label>
 
-                        </label>
+                                <input
+                                    type="file"
+                                    id="rut"
+                                    name="rut"
+                                    accept=".pdf">
 
+                            </div>
 
-                        <input
-                            type="file"
-                            id="antecedentes_procuraduria"
-                            name="antecedentes_procuraduria"
-                            accept=".pdf"
-                            class="form-control">
 
-                    </div>
+                            <!-- POLICIA -->
 
+                            <div class="file-group">
 
-                    <!-- CONTRALORIA -->
+                                <label class="file-label" for="antecedentes_policia">
 
-                    <div class="file-group">
+                                    Certificado de Antecedentes de Policía
 
-                        <label>
+                                </label>
 
-                            Certificado de Contraloría
+                                <label class="file-upload-btn" for="antecedentes_policia" id="label_antecedentes_policia">
 
-                        </label>
+                                    <span class="icono">⬆</span> Adjuntar archivo aquí
 
+                                </label>
 
-                        <input
-                            type="file"
-                            id="antecedentes_contraloria"
-                            name="antecedentes_contraloria"
-                            accept=".pdf"
-                            class="form-control">
+                                <input
+                                    type="file"
+                                    id="antecedentes_policia"
+                                    name="antecedentes_policia"
+                                    accept=".pdf">
 
-                    </div>
+                            </div>
 
 
-                    <!-- PROCESOS JUDICIALES -->
+                            <!-- PROCURADURIA -->
 
-                    <div class="file-group">
+                            <div class="file-group">
 
-                        <label>
+                                <label class="file-label" for="antecedentes_procuraduria">
 
-                            Certificado de Procesos Judiciales
+                                    Certificado de Procuraduría
 
-                        </label>
+                                </label>
 
+                                <label class="file-upload-btn" for="antecedentes_procuraduria" id="label_antecedentes_procuraduria">
 
-                        <input
-                            type="file"
-                            id="procesos_judiciales"
-                            name="procesos_judiciales"
-                            accept=".pdf"
-                            class="form-control">
+                                    <span class="icono">⬆</span> Adjuntar archivo aquí
+
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="antecedentes_procuraduria"
+                                    name="antecedentes_procuraduria"
+                                    accept=".pdf">
+
+                            </div>
+
+
+                            <!-- CONTRALORIA -->
+
+                            <div class="file-group">
+
+                                <label class="file-label" for="antecedentes_contraloria">
+
+                                    Certificado de Contraloría
+
+                                </label>
+
+                                <label class="file-upload-btn" for="antecedentes_contraloria" id="label_antecedentes_contraloria">
+
+                                    <span class="icono">⬆</span> Adjuntar archivo aquí
+
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="antecedentes_contraloria"
+                                    name="antecedentes_contraloria"
+                                    accept=".pdf">
+
+                            </div>
+
+
+                            <!-- PROCESOS JUDICIALES -->
+
+                            <div class="file-group">
+
+                                <label class="file-label" for="procesos_judiciales">
+
+                                    Certificado de Procesos Judiciales
+
+                                </label>
+
+                                <label class="file-upload-btn" for="procesos_judiciales" id="label_procesos_judiciales">
+
+                                    <span class="icono">⬆</span> Adjuntar archivo aquí
+
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="procesos_judiciales"
+                                    name="procesos_judiciales"
+                                    accept=".pdf">
+
+                            </div>
+
+
+                        </div>
+
 
                     </div>
 
