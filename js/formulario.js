@@ -65,6 +65,24 @@ formulario.addEventListener("submit", async function (event) {
     try {
         const formData = new FormData(formulario);
 
+        // =====================================================
+// VALIDAR DOCUMENTOS OBLIGATORIOS
+// =====================================================
+
+for (const idCampo in CAMPOS_ARCHIVO) {
+
+    const input = document.getElementById(idCampo);
+
+    if (!input || !input.files || input.files.length === 0) {
+
+        throw new Error(
+            "Debes adjuntar el documento: " + CAMPOS_ARCHIVO[idCampo]
+        );
+
+    }
+
+}
+
         // 1. Armar el objeto para la tabla candidatos
         const candidatoData = {};
 
