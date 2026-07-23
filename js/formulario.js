@@ -28,10 +28,7 @@ const MAPEO_CAMPOS = {
     experiencia_comercial: "experiencia_comercial",
     experiencia_turismo: "experiencia_turismo",
     empresa_actividad_actual: "empresa_actividad_actual",
-    referente_vinculacion: "referente",
-    banco: "banco",
-    tipo_cuenta: "tipo_cuenta",
-    numero_cuenta: "numero_cuenta"
+    referente_vinculacion: "referente"
 };
 
 // Checkboxes: name del input -> columna booleana en candidatos
