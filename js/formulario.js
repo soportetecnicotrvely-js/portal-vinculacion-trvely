@@ -186,11 +186,22 @@ formulario.addEventListener("submit", async function (event) {
         | correctamente sin necesidad de permiso SELECT.
         |
         */
+        console.log("DATOS QUE SE ENVIARÁN A SUPABASE:", candidatoData);
 
-        const { error: errorCandidato } =
+const { error: errorCandidato } =
+    await window.supabaseClient
+        .from("candidatos")
+        .insert(candidatoData);
+
+if (errorCandidato) {
+    console.error("ERROR COMPLETO DE SUPABASE:", errorCandidato);
+    throw errorCandidato;
+}
+
+        /*const { error: errorCandidato } =
             await window.supabaseClient
                 .from("candidatos")
-                .insert(candidatoData);
+                .insert(candidatoData);*/
 
 
         if (errorCandidato) {
