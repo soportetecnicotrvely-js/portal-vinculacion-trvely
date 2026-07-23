@@ -11,7 +11,7 @@ const BUCKET_DOCUMENTOS = "documentos";
 // Mapeo: name del input en el HTML -> columna en la tabla candidatos
 const MAPEO_CAMPOS = {
     tipo_documento: "tipo_documento",
-    numero_docum: "numero_docum",
+    numero_documento: "numero_documento",
     nombre_completo: "nombre_completo",
     fecha_nacimiento: "fecha_nacimiento",
     lugar_nacimiento: "lugar_nacimiento",
