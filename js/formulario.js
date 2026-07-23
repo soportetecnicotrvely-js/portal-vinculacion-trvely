@@ -135,6 +135,33 @@ formulario.addEventListener("submit", async function (event) {
 
         const candidatoData = {};
 
+Object.keys(MAPEO_CAMPOS).forEach(function (nombreCampo) {
+
+    const columna = MAPEO_CAMPOS[nombreCampo];
+    const valor = formData.get(nombreCampo);
+
+    candidatoData[columna] =
+        valor === "" || valor === null
+            ? null
+            : valor;
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| CONVERTIR EL VALOR DEL PERFIL AL VALOR DEL ENUM DE SUPABASE
+|--------------------------------------------------------------------------
+*/
+
+if (candidatoData.perfil === "asesor_comercial") {
+    candidatoData.perfil = "Asesor Comercial";
+}
+
+if (candidatoData.perfil === "director_comercial") {
+    candidatoData.perfil = "Director Comercial";
+}
+        /*const candidatoData = {};
+
         Object.keys(MAPEO_CAMPOS).forEach(function (nombreCampo) {
 
             const columna = MAPEO_CAMPOS[nombreCampo];
@@ -144,7 +171,7 @@ formulario.addEventListener("submit", async function (event) {
                 valor === "" || valor === null
                     ? null
                     : valor;
-        });
+        });*/
 
 
         /*
