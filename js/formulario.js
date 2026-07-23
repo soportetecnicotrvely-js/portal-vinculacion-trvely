@@ -1,14 +1,19 @@
 /**
  * =====================================================
  * PORTAL DE VINCULACIÓN TRVELY
- * formulario.js v1.0
+ * formulario.js v2.0
  * Envía el formulario a Supabase: candidatos + documentos
  * =====================================================
  */
 
 const BUCKET_DOCUMENTOS = "documentos";
 
-// Mapeo: name del input en el HTML -> columna en la tabla candidatos
+/*
+|--------------------------------------------------------------------------
+| MAPEO DE CAMPOS DEL FORMULARIO → TABLA candidatos
+|--------------------------------------------------------------------------
+*/
+
 const MAPEO_CAMPOS = {
     tipo_documento: "tipo_documento",
     numero_documento: "numero_documento",
@@ -31,7 +36,12 @@ const MAPEO_CAMPOS = {
     referente_vinculacion: "referente"
 };
 
-// Checkboxes: name del input -> columna booleana en candidatos
+/*
+|--------------------------------------------------------------------------
+| CHECKBOXES
+|--------------------------------------------------------------------------
+*/
+
 const MAPEO_CHECKBOXES = {
     tratamiento_datos: "autoriza_datos",
     consulta_antecedentes: "autoriza_consulta",
@@ -40,7 +50,12 @@ const MAPEO_CHECKBOXES = {
     comunicaciones: "acepta_comunicaciones"
 };
 
-// Documentos: id del input file -> etiqueta a guardar en la tabla documentos
+/*
+|--------------------------------------------------------------------------
+| DOCUMENTOS OBLIGATORIOS
+|--------------------------------------------------------------------------
+*/
+
 const CAMPOS_ARCHIVO = {
     documento_cedula: "Cédula de Ciudadanía",
     hoja_de_vida: "Hoja de Vida",
@@ -52,106 +67,283 @@ const CAMPOS_ARCHIVO = {
     procesos_judiciales: "Certificado de Procesos Judiciales"
 };
 
+
+/*
+|--------------------------------------------------------------------------
+| FORMULARIO
+|--------------------------------------------------------------------------
+*/
+
 const formulario = document.getElementById("formulario-candidato");
 
+
 formulario.addEventListener("submit", async function (event) {
+
     event.preventDefault();
 
     const boton = formulario.querySelector(".btn-primary-custom");
     const textoOriginal = boton.textContent;
+
+    /*
+    |--------------------------------------------------------------------------
+    | 1. VALIDAR DOCUMENTOS OBLIGATORIOS
+    |--------------------------------------------------------------------------
+    */
+
+    const archivosFaltantes = [];
+
+    for (const idCampo in CAMPOS_ARCHIVO) {
+
+        const input = document.getElementById(idCampo);
+
+        if (!input || !input.files || input.files.length === 0) {
+            archivosFaltantes.push(CAMPOS_ARCHIVO[idCampo]);
+        }
+    }
+
+    if (archivosFaltantes.length > 0) {
+
+        alert(
+            "Debes adjuntar todos los documentos obligatorios antes de enviar el formulario.\n\n" +
+            "Faltan:\n- " +
+            archivosFaltantes.join("\n- ")
+        );
+
+        return;
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | 2. DESACTIVAR BOTÓN
+    |--------------------------------------------------------------------------
+    */
+
     boton.disabled = true;
     boton.textContent = "Enviando...";
 
+
     try {
+
         const formData = new FormData(formulario);
 
-        // =====================================================
-// VALIDAR DOCUMENTOS OBLIGATORIOS
-// =====================================================
+        /*
+        |--------------------------------------------------------------------------
+        | 3. ARMAR DATOS DEL CANDIDATO
+        |--------------------------------------------------------------------------
+        */
 
-for (const idCampo in CAMPOS_ARCHIVO) {
-
-    const input = document.getElementById(idCampo);
-
-    if (!input || !input.files || input.files.length === 0) {
-
-        throw new Error(
-            "Debes adjuntar el documento: " + CAMPOS_ARCHIVO[idCampo]
-        );
-
-    }
-
-}
-
-        // 1. Armar el objeto para la tabla candidatos
         const candidatoData = {};
 
         Object.keys(MAPEO_CAMPOS).forEach(function (nombreCampo) {
+
             const columna = MAPEO_CAMPOS[nombreCampo];
             const valor = formData.get(nombreCampo);
-            candidatoData[columna] = valor === "" ? null : valor;
+
+            candidatoData[columna] =
+                valor === "" || valor === null
+                    ? null
+                    : valor;
         });
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | 4. CHECKBOXES
+        |--------------------------------------------------------------------------
+        */
 
         Object.keys(MAPEO_CHECKBOXES).forEach(function (nombreCampo) {
+
             const columna = MAPEO_CHECKBOXES[nombreCampo];
-            const input = formulario.querySelector('[name="' + nombreCampo + '"]');
-            candidatoData[columna] = input ? input.checked : false;
+
+            const input = formulario.querySelector(
+                '[name="' + nombreCampo + '"]'
+            );
+
+            candidatoData[columna] = input
+                ? input.checked
+                : false;
         });
 
-        // No hay checkbox de firma en el form todavía: se marca true al enviar.
+
+        /*
+        |--------------------------------------------------------------------------
+        | 5. ACEPTACIÓN DE FIRMA
+        |--------------------------------------------------------------------------
+        */
+
         candidatoData.acepta_firma = true;
 
-        // 2. Insertar candidato y recuperar su id
-        const { data: candidatoInsertado, error: errorCandidato } = await window.supabaseClient
-            .from("candidatos")
-            .insert(candidatoData)
-            .select()
-            .single();
 
-        if (errorCandidato) throw errorCandidato;
+        /*
+        |--------------------------------------------------------------------------
+        | 6. INSERTAR CANDIDATO
+        |--------------------------------------------------------------------------
+        |
+        | IMPORTANTE:
+        | No usamos .select() aquí porque el INSERT público funciona
+        | correctamente sin necesidad de permiso SELECT.
+        |
+        */
+
+        const { error: errorCandidato } =
+            await window.supabaseClient
+                .from("candidatos")
+                .insert(candidatoData);
+
+
+        if (errorCandidato) {
+            throw errorCandidato;
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | 7. RECUPERAR EL ID DEL CANDIDATO
+        |--------------------------------------------------------------------------
+        */
+
+        const { data: candidatoInsertado, error: errorBusqueda } =
+            await window.supabaseClient
+                .from("candidatos")
+                .select("id")
+                .eq("numero_documento", candidatoData.numero_documento)
+                .eq("correo", candidatoData.correo)
+                .order("created_at", { ascending: false })
+                .limit(1)
+                .maybeSingle();
+
+
+        if (errorBusqueda) {
+            throw errorBusqueda;
+        }
+
+
+        if (!candidatoInsertado) {
+            throw new Error(
+                "El candidato fue creado, pero no fue posible recuperar su ID."
+            );
+        }
+
 
         const candidatoId = candidatoInsertado.id;
 
-        // 3. Subir cada archivo adjunto e insertar su fila en documentos
+
+        /*
+        |--------------------------------------------------------------------------
+        | 8. SUBIR DOCUMENTOS
+        |--------------------------------------------------------------------------
+        */
+
         for (const idCampo in CAMPOS_ARCHIVO) {
+
             const input = document.getElementById(idCampo);
-            const archivo = input && input.files[0];
-            if (!archivo) continue;
 
-            const rutaStorage = candidatoId + "/" + idCampo + "-" + archivo.name;
+            const archivo = input.files[0];
 
-            const { error: errorSubida } = await window.supabaseClient
-                .storage
-                .from(BUCKET_DOCUMENTOS)
-                .upload(rutaStorage, archivo);
+            if (!archivo) {
+                continue;
+            }
 
-            if (errorSubida) throw errorSubida;
 
-            const { error: errorDocumento } = await window.supabaseClient
-                .from("documentos")
-                .insert({
-                    candidato_id: candidatoId,
-                    tipo_documento: CAMPOS_ARCHIVO[idCampo],
-                    nombre_archivo: archivo.name,
-                    ruta_storage: rutaStorage
-                });
+            const nombreSeguro = archivo.name
+                .replace(/[^a-zA-Z0-9._-]/g, "_");
 
-            if (errorDocumento) throw errorDocumento;
+
+            const rutaStorage =
+                candidatoId +
+                "/" +
+                idCampo +
+                "-" +
+                nombreSeguro;
+
+
+            const { error: errorSubida } =
+                await window.supabaseClient
+                    .storage
+                    .from(BUCKET_DOCUMENTOS)
+                    .upload(
+                        rutaStorage,
+                        archivo
+                    );
+
+
+            if (errorSubida) {
+                throw errorSubida;
+            }
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | 9. GUARDAR REGISTRO DEL DOCUMENTO
+            |--------------------------------------------------------------------------
+            */
+
+            const { error: errorDocumento } =
+                await window.supabaseClient
+                    .from("documentos")
+                    .insert({
+
+                        candidato_id: candidatoId,
+
+                        tipo_documento:
+                            CAMPOS_ARCHIVO[idCampo],
+
+                        nombre_archivo:
+                            archivo.name,
+
+                        ruta_storage:
+                            rutaStorage
+
+                    });
+
+
+            if (errorDocumento) {
+                throw errorDocumento;
+            }
         }
 
-        alert("¡Registro enviado correctamente! Gracias por postularte a Trvely.");
+
+        /*
+        |--------------------------------------------------------------------------
+        | 10. ÉXITO
+        |--------------------------------------------------------------------------
+        */
+
+        alert(
+            "¡Registro enviado correctamente!\n\n" +
+            "Gracias por postularte a Trvely."
+        );
+
+
         formulario.reset();
 
-        document.querySelectorAll(".file-upload-btn").forEach(function (btn) {
-            btn.innerHTML = '<span class="icono">⬆</span> Adjuntar archivo aquí';
-            btn.classList.remove("tiene-archivo");
-        });
+
+        document
+            .querySelectorAll(".file-upload-btn")
+            .forEach(function (btn) {
+
+                btn.innerHTML =
+                    '<span class="icono">⬆</span> Adjuntar archivo aquí';
+
+                btn.classList.remove("tiene-archivo");
+            });
+
 
     } catch (error) {
+
         console.error(error);
-        alert("Hubo un error al enviar el formulario: " + (error.message || "intenta de nuevo."));
+
+        alert(
+            "Hubo un error al enviar el formulario:\n\n" +
+            (error.message || "Intenta de nuevo.")
+        );
+
     } finally {
+
         boton.disabled = false;
         boton.textContent = textoOriginal;
     }
+
 });
