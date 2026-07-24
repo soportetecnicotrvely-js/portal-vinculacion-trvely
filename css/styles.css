@@ -22,9 +22,9 @@ VARIABLES GENERALES
 
 /*======================================================
 FUENTES
-Todas las tipografías se cargan desde Google Fonts
-(ver <link> en el <head> de index.html). No hay
-archivos .ttf/.otf locales.
+Todas las tipografías (Montserrat + Archivo Expanded)
+se cargan desde Google Fonts, ver <link> en index.html.
+No hay archivos .ttf/.otf locales.
 ======================================================*/
 
 /*======================================================
@@ -58,7 +58,13 @@ HEADER
     height:130px;
     display:flex;
     align-items:center;
+    justify-content:space-between;
     gap:30px;
+}
+
+.logo{
+    height:100px;
+    width:auto;
 }
 
 .header-tagline{
@@ -68,11 +74,6 @@ HEADER
     color:var(--text);
     margin:0;
     max-width:420px;
-}
-
-.logo{
-    height:100px;
-    width:auto;
 }
 
 /*======================================================
@@ -141,13 +142,16 @@ SECCIONES
 
 /*======================================================
 TARJETA FORMULARIO
+Mockup no muestra un borde/card marcado: se aligera el
+borde y la sombra para que el formulario se vea integrado
+al fondo blanco de la página, como en el diseño.
 ======================================================*/
 .form-card{
     background:#FFFFFF;
-    border:1px solid var(--border);
+    border:none;
     border-radius:18px;
     padding:45px;
-    box-shadow:0 5px 25px rgba(0,0,0,.04);
+    box-shadow:none;
 }
 
 .form-card h3{
@@ -169,18 +173,88 @@ TARJETA FORMULARIO
     margin-bottom:8px;
 }
 
+/* Inputs estilo "pill" gris relleno, como en el mockup */
 .form-control,
 .form-select{
-    border-radius:10px;
-    border:1px solid #DCDCDC;
-    padding:12px 15px;
+    background:var(--gray);
+    border-radius:12px;
+    border:1px solid transparent;
+    padding:12px 18px;
     min-height:48px;
 }
 
 .form-control:focus,
 .form-select:focus{
+    background:#FFFFFF;
     border-color:var(--primary);
     box-shadow:0 0 0 3px rgba(195,0,69,.1);
+}
+
+/* Campo compuesto: tipo de documento + número (como el "C.C" del mockup) */
+.documento-compuesto{
+    display:flex;
+    gap:10px;
+}
+
+.documento-compuesto .form-select{
+    max-width:110px;
+    flex:0 0 auto;
+}
+
+.documento-compuesto .form-control{
+    flex:1 1 auto;
+}
+
+/* Toggle tipo píldora para Sexo (M/F), como en el mockup */
+.sexo-toggle{
+    display:flex;
+    gap:20px;
+    align-items:center;
+    height:48px;
+}
+
+.sexo-opcion{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--font-semibold);
+    font-weight:var(--fw-semibold);
+    font-size:13px;
+    cursor:pointer;
+}
+
+.sexo-opcion input[type="radio"]{
+    appearance:none;
+    width:34px;
+    height:20px;
+    border-radius:20px;
+    background:var(--gray);
+    border:1px solid #DCDCDC;
+    position:relative;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.sexo-opcion input[type="radio"]::before{
+    content:"";
+    position:absolute;
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:#FFFFFF;
+    top:2px;
+    left:2px;
+    transition:.2s;
+    box-shadow:0 1px 2px rgba(0,0,0,.2);
+}
+
+.sexo-opcion input[type="radio"]:checked{
+    background:var(--primary);
+    border-color:var(--primary);
+}
+
+.sexo-opcion input[type="radio"]:checked::before{
+    left:16px;
 }
 
 /*======================================================
@@ -203,9 +277,44 @@ textarea{
     resize:vertical;
 }
 
+textarea.form-control{
+    background:var(--gray);
+}
+
 /*======================================================
 DOCUMENTOS
+Layout con imagen ilustrativa a la izquierda (fondo blob
+durazno) y la lista de archivos a la derecha, como el mockup.
+Los <input type="file"> se ocultan visualmente y se
+reemplazan por un botón píldora con borde punteado.
 ======================================================*/
+.documentos-layout{
+    display:flex;
+    gap:40px;
+    align-items:flex-start;
+    flex-wrap:wrap;
+}
+
+.documentos-imagen{
+    flex:1 1 320px;
+    background:#FFF1E5;
+    border-radius:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    min-height:280px;
+}
+
+.documentos-imagen img{
+    max-width:100%;
+    border-radius:18px;
+}
+
+.documentos-campos{
+    flex:1 1 380px;
+}
+
 .documentos p{
     color:#666;
     margin-bottom:30px;
@@ -215,15 +324,54 @@ DOCUMENTOS
     margin-bottom:20px;
 }
 
-.file-group label{
+.file-group label.file-label{
     display:block;
     font-family:var(--font-semibold);
     font-weight:var(--fw-semibold);
+    color:var(--primary);
     margin-bottom:8px;
 }
 
-.file-group input{
-    border-radius:10px;
+/* Oculta el input nativo pero lo deja accesible */
+.file-group input[type="file"]{
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    border:0;
+}
+
+.file-upload-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    width:100%;
+    background:#FFFFFF;
+    border:1.5px dashed var(--primary);
+    border-radius:30px;
+    padding:12px 22px;
+    color:var(--primary);
+    font-family:var(--font-semibold);
+    font-weight:var(--fw-semibold);
+    font-size:14px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.file-upload-btn:hover{
+    background:#FFF1E5;
+}
+
+.file-upload-btn .icono{
+    font-size:16px;
+}
+
+.file-upload-btn.tiene-archivo{
+    border-style:solid;
+    background:#FFF1E5;
 }
 
 /*======================================================
@@ -320,12 +468,12 @@ RESPONSIVE
 .form-submit h2{
         font-size:32px;
 }
+.documentos-layout{
+        flex-direction:column;
+}
 }
 
 @media(max-width:576px){
-.header-tagline{
-        display:none;
-}
 .registro{
         padding-top:35px;
 }
@@ -350,5 +498,14 @@ RESPONSIVE
 }
 .btn-primary-custom{
         width:100%;
+}
+.header-content{
+        flex-wrap:wrap;
+        height:auto;
+        padding:16px 0;
+        gap:12px;
+}
+.header-tagline{
+        display:none;
 }
 }
