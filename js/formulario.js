@@ -320,6 +320,23 @@ formulario.addEventListener("submit", async function (event) {
             }
         }
 
+                /*
+        |----------------------------------------------------------------------
+        | 9.5. ACTUALIZAR ESTADO DEL CANDIDATO
+        |----------------------------------------------------------------------
+        */
+
+        const { error: errorEstado } =
+            await window.supabaseClient
+                .from("candidatos")
+                .update({
+                    estado_proceso: "documentos_en_revision"
+                })
+                .eq("id", candidatoId);
+
+        if (errorEstado) {
+            throw errorEstado;
+        }
 
         /*
         |--------------------------------------------------------------------------
