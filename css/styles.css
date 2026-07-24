@@ -9,31 +9,23 @@ VARIABLES GENERALES
     --gray:#F4F4F4;
     --border:#E6E6E6;
 
+    --font-title:'Archivo Expanded';
     --font-regular:'Montserrat';
     --font-semibold:'Montserrat';
-    --font-bold:'MontserratBold';
+    --font-bold:'Montserrat';
     --font-extra-bold:'Montserrat';
 
     --fw-semibold:600;
+    --fw-bold:700;
     --fw-extra-bold:800;
 }
 
 /*======================================================
 FUENTES
+Todas las tipografías se cargan desde Google Fonts
+(ver <link> en el <head> de index.html). No hay
+archivos .ttf/.otf locales.
 ======================================================*/
-@font-face{
-    font-family:'Extenda';
-    src:url('../assets/fonts/Extenda-60-Giga.otf')
-    format('opentype');
-}
-
-@font-face{
-    font-family:'MontserratBold';
-    src:url('../assets/fonts/Montserrat-Bold.ttf')
-    format('truetype');
-}
-
-/* Montserrat Regular / SemiBold / ExtraBold se cargan desde Google Fonts (ver <link> en index.html) */
 
 /*======================================================
 RESET
@@ -82,7 +74,7 @@ REGISTRO DE ASESORES
 }
 
 .titulo-registro{
-    font-family:var(--font-extra-bold);
+    font-family:var(--font-title);
     font-weight:var(--fw-extra-bold);
     font-size:58px;
     color:var(--primary);
