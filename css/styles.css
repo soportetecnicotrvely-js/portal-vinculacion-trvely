@@ -55,13 +55,23 @@ HEADER
 }
 
 .header-content{
-    height:100px;
+    height:130px;
     display:flex;
     align-items:center;
+    gap:30px;
+}
+
+.header-tagline{
+    font-family:var(--font-semibold);
+    font-weight:var(--fw-semibold);
+    font-size:15px;
+    color:var(--text);
+    margin:0;
+    max-width:420px;
 }
 
 .logo{
-    height:68px;
+    height:100px;
     width:auto;
 }
 
@@ -298,7 +308,11 @@ RESPONSIVE
 
 @media(max-width:768px){
 .logo{
-        height:58px;
+        height:80px;
+}
+.header-tagline{
+        font-size:13px;
+        max-width:260px;
 }
 .form-card{
         padding:25px;
@@ -309,6 +323,9 @@ RESPONSIVE
 }
 
 @media(max-width:576px){
+.header-tagline{
+        display:none;
+}
 .registro{
         padding-top:35px;
 }
