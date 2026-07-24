@@ -9,11 +9,11 @@ VARIABLES GENERALES
     --gray:#F4F4F4;
     --border:#E6E6E6;
 
-    --font-title:'Archivo Expanded';
-    --font-regular:'Montserrat';
-    --font-semibold:'Montserrat';
-    --font-bold:'Montserrat';
-    --font-extra-bold:'Montserrat';
+    --font-title:'Archivo Expanded', 'Montserrat', Arial, sans-serif;
+    --font-regular:'Montserrat', Arial, sans-serif;
+    --font-semibold:'Montserrat', Arial, sans-serif;
+    --font-bold:'Montserrat', Arial, sans-serif;
+    --font-extra-bold:'Montserrat', Arial, sans-serif;
 
     --fw-semibold:600;
     --fw-bold:700;
