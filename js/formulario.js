@@ -30,8 +30,6 @@ const MAPEO_CAMPOS = {
     telefono_emergencia: "telefono_emergencia",
     perfil_aplica: "perfil",
     ciudad_trabajo: "ciudad_labor",
-    experiencia_comercial: "experiencia_comercial",
-    experiencia_turismo: "experiencia_turismo",
     empresa_actividad_actual: "empresa_actividad_actual",
     referente_vinculacion: "referente"
 };
