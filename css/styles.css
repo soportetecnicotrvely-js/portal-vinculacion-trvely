@@ -19,12 +19,12 @@ VARIABLES GENERALES
     --border:#E6E6E6;
 
     --font-regular:'Montserrat';
+--font-semibold:'Montserrat';
+--font-bold:'MontserratBold';
+--font-extra-bold:'Montserrat';
 
-    --font-semibold:'MontserratSemiBold';
-
-    --font-bold:'MontserratBold';
-
-    --font-extra-bold:'MontserratExtraBold';
+--fw-semibold:600;
+--fw-extra-bold:800;
 
 }
 
@@ -35,55 +35,18 @@ FUENTES
 ======================================================*/
 
 @font-face{
-
     font-family:'Extenda';
-
     src:url('../assets/fonts/Extenda-60-Giga.otf')
-
     format('opentype');
-
 }
 
 @font-face{
-
-    font-family:'Montserrat';
-
-    src:url('../assets/fonts/Montserrat-Regular.ttf')
-
-    format('truetype');
-
-}
-
-@font-face{
-
     font-family:'MontserratBold';
-
     src:url('../assets/fonts/Montserrat-Bold.ttf')
-
     format('truetype');
-
 }
 
-@font-face{
-
-    font-family:'MontserratSemiBold';
-
-    src:url('../assets/fonts/Montserrat-SemiBold.ttf')
-
-    format('truetype');
-
-}
-
-@font-face{
-
-    font-family:'MontserratExtraBold';
-
-    src:url('../assets/fonts/Montserrat-ExtraBold.ttf')
-
-    format('truetype');
-
-}
-
+/* Montserrat Regular / SemiBold / ExtraBold se cargan desde Google Fonts (ver <link> en index.html) */
 /*======================================================
 
 RESET
