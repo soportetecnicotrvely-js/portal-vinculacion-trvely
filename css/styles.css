@@ -205,6 +205,12 @@ al fondo blanco de la página, como en el diseño.
     flex:1 1 auto;
 }
 
+.input-indicativo{
+    max-width:90px;
+    flex:0 0 auto;
+    text-align:center;
+}
+
 /* Toggle tipo píldora para Sexo (M/F), como en el mockup */
 .sexo-toggle{
     display:flex;
