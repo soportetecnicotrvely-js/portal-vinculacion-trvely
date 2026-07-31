@@ -95,6 +95,25 @@
                 </button>
             </div>
 
+            <div class="admin-toolbar">
+
+                <input
+                    type="text"
+                    id="buscar-candidato"
+                    class="form-control"
+                    placeholder="Buscar por nombre o número de documento...">
+
+                <select id="filtro-estado" class="form-select">
+                    <option value="">Todos los estados</option>
+                    <option value="registrado">Registrado</option>
+                    <option value="documentos_en_revision">En revisión</option>
+                    <option value="documentos_aprobados">Aprobado</option>
+                    <option value="documentos_rechazados">Rechazado</option>
+                    <option value="contrato_enviado">Contrato enviado</option>
+                </select>
+
+            </div>
+
             <div class="admin-layout">
 
                 <div class="admin-lista" id="lista-candidatos">
