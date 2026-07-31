@@ -222,6 +222,7 @@ formulario.addEventListener("submit", async function (event) {
         */
 
         candidatoData.acepta_firma = true;
+        candidatoData.estado_proceso = "documentos_en_revision";
 
 
         /*
