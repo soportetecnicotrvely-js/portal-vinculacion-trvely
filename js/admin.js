@@ -190,7 +190,7 @@ async function mostrarDetalleCandidato(candidato) {
     const { data: documentos, error } =
         await window.supabaseClient
             .from("documentos")
-            .select("id, tipo_documento, nombre_archivo, ruta_storage, estado")
+            .select("id, tipo_documento, nombre_archivo, ruta_storage, estado, motivo_rechazo")
             .eq("candidato_id", candidato.id)
             .order("tipo_documento", { ascending: true });
 
@@ -223,6 +223,9 @@ async function mostrarDetalleCandidato(candidato) {
                     '<span class="badge-estado badge-' + doc.estado + '">' +
                         ETIQUETAS_ESTADO[doc.estado] +
                     '</span>' +
+                    (doc.estado === "rechazado" && doc.motivo_rechazo
+                        ? '<p class="motivo-rechazo">Motivo: ' + doc.motivo_rechazo + '</p>'
+                        : '') +
                 '</div>' +
                 '<div class="acciones">' +
                     '<button class="btn-ver" data-accion="ver" data-ruta="' + doc.ruta_storage + '">Ver</button>' +
@@ -245,8 +248,26 @@ async function mostrarDetalleCandidato(candidato) {
                 return;
             }
 
-            const nuevoEstado = accion === "aprobar" ? "aprobado" : "rechazado";
-            await actualizarEstadoDocumento(btn.dataset.id, nuevoEstado, candidato);
+            if (accion === "rechazar") {
+
+                const motivo = prompt(
+                    "¿Por qué se rechaza este documento? (esto se le va a mostrar al asesor)"
+                );
+
+                if (motivo === null) {
+                    return; // el admin canceló
+                }
+
+                if (motivo.trim() === "") {
+                    alert("Tenés que escribir un motivo para rechazar el documento.");
+                    return;
+                }
+
+                await actualizarEstadoDocumento(btn.dataset.id, "rechazado", candidato, motivo.trim());
+                return;
+            }
+
+            await actualizarEstadoDocumento(btn.dataset.id, "aprobado", candidato, null);
         });
     });
 }
@@ -270,12 +291,15 @@ async function abrirDocumento(rutaStorage) {
 }
 
 
-async function actualizarEstadoDocumento(documentoId, nuevoEstado, candidato) {
+async function actualizarEstadoDocumento(documentoId, nuevoEstado, candidato, motivo) {
 
     const { error } =
         await window.supabaseClient
             .from("documentos")
-            .update({ estado: nuevoEstado })
+            .update({
+                estado: nuevoEstado,
+                motivo_rechazo: nuevoEstado === "rechazado" ? motivo : null
+            })
             .eq("id", documentoId);
 
     if (error) {
