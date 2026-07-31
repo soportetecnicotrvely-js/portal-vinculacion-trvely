@@ -222,7 +222,36 @@ formulario.addEventListener("submit", async function (event) {
         */
 
         candidatoData.acepta_firma = true;
-        candidatoData.estado_proceso = "documentos_en_revision";
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | 5.5 VERIFICAR QUE NO SEA UN CANDIDATO DUPLICADO
+        |--------------------------------------------------------------------------
+        */
+
+        const { data: yaExiste, error: errorDuplicado } =
+            await window.supabaseClient
+                .rpc("existe_documento", {
+                    p_numero_documento: candidatoData.numero_documento
+                });
+
+        if (errorDuplicado) {
+            throw errorDuplicado;
+        }
+
+        if (yaExiste) {
+
+            alert(
+                "Ya existe un candidato registrado con el número de documento " +
+                candidatoData.numero_documento +
+                ".\n\nSi creés que esto es un error, contactá al equipo de soporte."
+            );
+
+            boton.disabled = false;
+            boton.textContent = textoOriginal;
+            return;
+        }
 
 
         /*
@@ -385,9 +414,13 @@ formulario.addEventListener("submit", async function (event) {
 
         console.error(error);
 
+        const esDuplicado = error.code === "23505";
+
         alert(
-            "Hubo un error al enviar el formulario:\n\n" +
-            (error.message || "Intenta de nuevo.")
+            esDuplicado
+                ? "Ya existe un candidato registrado con este número de documento.\n\nSi creés que esto es un error, contactá al equipo de soporte."
+                : "Hubo un error al enviar el formulario:\n\n" +
+                  (error.message || "Intenta de nuevo.")
         );
 
     } finally {
