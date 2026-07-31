@@ -23,7 +23,6 @@ const MAPEO_CAMPOS = {
     nacionalidad: "nacionalidad",
     ciudad_residencia: "ciudad_residencia",
     direccion_residencia: "direccion",
-    celular: "celular",
     correo_personal: "correo",
     contacto_emergencia: "contacto_emergencia",
     parentesco_emergencia: "parentesco",
@@ -67,6 +66,8 @@ const CAMPOS_ARCHIVO = {
     procesos_judiciales: "Procesos Judiciales"
 };
 
+const TAMANO_MAXIMO_ARCHIVO = 3 * 1024 * 1024; // 3 MB
+
 
 /*
 |--------------------------------------------------------------------------
@@ -91,6 +92,7 @@ formulario.addEventListener("submit", async function (event) {
     */
 
     const archivosFaltantes = [];
+    const archivosPesados = [];
 
     for (const idCampo in CAMPOS_ARCHIVO) {
 
@@ -98,6 +100,11 @@ formulario.addEventListener("submit", async function (event) {
 
         if (!input || !input.files || input.files.length === 0) {
             archivosFaltantes.push(CAMPOS_ARCHIVO[idCampo]);
+            continue;
+        }
+
+        if (input.files[0].size > TAMANO_MAXIMO_ARCHIVO) {
+            archivosPesados.push(CAMPOS_ARCHIVO[idCampo]);
         }
     }
 
@@ -107,6 +114,17 @@ formulario.addEventListener("submit", async function (event) {
             "Debes adjuntar todos los documentos obligatorios antes de enviar el formulario.\n\n" +
             "Faltan:\n- " +
             archivosFaltantes.join("\n- ")
+        );
+
+        return;
+    }
+
+    if (archivosPesados.length > 0) {
+
+        alert(
+            "Los siguientes archivos superan el tamaño máximo permitido (3 MB):\n\n- " +
+            archivosPesados.join("\n- ") +
+            "\n\nComprimí el archivo o subí una versión más liviana."
         );
 
         return;
@@ -145,6 +163,21 @@ formulario.addEventListener("submit", async function (event) {
                     ? null
                     : valor;
         });
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | ARMAR EL CELULAR CON INDICATIVO DE PAÍS
+        |--------------------------------------------------------------------------
+        */
+
+        const indicativo = formData.get("indicativo_celular");
+        const numeroCelular = formData.get("numero_celular");
+
+        candidatoData.celular =
+            indicativo && numeroCelular
+                ? indicativo.trim() + " " + numeroCelular.trim()
+                : null;
 
 
         /*
@@ -189,7 +222,6 @@ formulario.addEventListener("submit", async function (event) {
         */
 
         candidatoData.acepta_firma = true;
-        candidatoData.estado_proceso = "documentos_en_revision";
 
 
         /*
@@ -321,7 +353,6 @@ formulario.addEventListener("submit", async function (event) {
             }
         }
 
-   
 
         /*
         |--------------------------------------------------------------------------
