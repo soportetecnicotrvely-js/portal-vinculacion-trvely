@@ -14,14 +14,33 @@ const loginError = document.getElementById("login-error");
 const logoutBtn = document.getElementById("logout-btn");
 const listaCandidatosEl = document.getElementById("lista-candidatos");
 const detalleCandidatoEl = document.getElementById("detalle-candidato");
+const buscarInput = document.getElementById("buscar-candidato");
+const filtroEstadoSelect = document.getElementById("filtro-estado");
 
 let candidatoSeleccionadoId = null;
+let candidatosCache = [];
 let documentosCache = [];
 
 const ETIQUETAS_ESTADO = {
     pendiente: "Pendiente",
     aprobado: "Aprobado",
     rechazado: "Rechazado"
+};
+
+const ETIQUETAS_ESTADO_PROCESO = {
+    registrado: "Registrado",
+    documentos_en_revision: "En revisión",
+    documentos_aprobados: "Aprobado",
+    documentos_rechazados: "Rechazado",
+    contrato_enviado: "Contrato enviado"
+};
+
+const CLASES_ESTADO_PROCESO = {
+    registrado: "badge-registrado",
+    documentos_en_revision: "badge-pendiente",
+    documentos_aprobados: "badge-aprobado",
+    documentos_rechazados: "badge-rechazado",
+    contrato_enviado: "badge-contrato"
 };
 
 
@@ -98,7 +117,7 @@ async function cargarCandidatos() {
     const { data: candidatos, error: errorCandidatos } =
         await window.supabaseClient
             .from("candidatos")
-            .select("id, nombre_completo, perfil, ciudad_labor, created_at")
+            .select("id, nombre_completo, numero_documento, perfil, ciudad_labor, estado_proceso, created_at")
             .order("created_at", { ascending: false });
 
     if (errorCandidatos) {
@@ -118,9 +137,35 @@ async function cargarCandidatos() {
     }
 
     documentosCache = documentos || [];
+    candidatosCache = candidatos || [];
 
-    renderizarListaCandidatos(candidatos || []);
+    aplicarFiltros();
 }
+
+
+function aplicarFiltros() {
+
+    const texto = (buscarInput.value || "").trim().toLowerCase();
+    const estado = filtroEstadoSelect.value;
+
+    const filtrados = candidatosCache.filter(function (candidato) {
+
+        const coincideTexto =
+            texto === "" ||
+            (candidato.nombre_completo || "").toLowerCase().includes(texto) ||
+            (candidato.numero_documento || "").toLowerCase().includes(texto);
+
+        const coincideEstado =
+            estado === "" || candidato.estado_proceso === estado;
+
+        return coincideTexto && coincideEstado;
+    });
+
+    renderizarListaCandidatos(filtrados);
+}
+
+buscarInput.addEventListener("input", aplicarFiltros);
+filtroEstadoSelect.addEventListener("change", aplicarFiltros);
 
 
 function contarPendientes(candidatoId) {
@@ -132,9 +177,15 @@ function contarPendientes(candidatoId) {
 
 function renderizarListaCandidatos(candidatos) {
 
-    if (candidatos.length === 0) {
+    if (candidatosCache.length === 0) {
         listaCandidatosEl.innerHTML =
             '<p class="admin-placeholder">Todavía no hay candidatos registrados.</p>';
+        return;
+    }
+
+    if (candidatos.length === 0) {
+        listaCandidatosEl.innerHTML =
+            '<p class="admin-placeholder">Ningún candidato coincide con la búsqueda/filtro.</p>';
         return;
     }
 
@@ -143,6 +194,7 @@ function renderizarListaCandidatos(candidatos) {
     candidatos.forEach(function (candidato) {
 
         const pendientes = contarPendientes(candidato.id);
+        const estadoProceso = candidato.estado_proceso || "registrado";
 
         const card = document.createElement("div");
         card.className = "candidato-card";
@@ -155,10 +207,14 @@ function renderizarListaCandidatos(candidatos) {
         card.innerHTML =
             "<h4>" + (candidato.nombre_completo || "Sin nombre") + "</h4>" +
             "<p>" + (candidato.perfil || "") +
-            (candidato.ciudad_labor ? " · " + candidato.ciudad_labor : "") + "</p>" +
+            (candidato.ciudad_labor ? " · " + candidato.ciudad_labor : "") +
+            (candidato.numero_documento ? " · " + candidato.numero_documento : "") + "</p>" +
+            '<span class="badge-estado ' + (CLASES_ESTADO_PROCESO[estadoProceso] || "badge-registrado") + '">' +
+                (ETIQUETAS_ESTADO_PROCESO[estadoProceso] || estadoProceso) +
+            '</span>' +
             (pendientes > 0
-                ? '<span class="badge-estado badge-pendiente">' + pendientes + ' pendiente(s)</span>'
-                : '<span class="badge-estado badge-aprobado">Revisado</span>');
+                ? ' <span class="badge-estado badge-pendiente">' + pendientes + ' por revisar</span>'
+                : '');
 
         card.addEventListener("click", function () {
             candidatoSeleccionadoId = candidato.id;
