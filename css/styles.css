@@ -410,6 +410,21 @@ MÓDULO ADMINISTRADOR
     font-size:14px;
 }
 
+.admin-toolbar{
+    display:flex;
+    gap:15px;
+    margin-bottom:25px;
+    flex-wrap:wrap;
+}
+
+.admin-toolbar .form-control{
+    flex:1 1 280px;
+}
+
+.admin-toolbar .form-select{
+    flex:0 1 220px;
+}
+
 .admin-layout{
     display:flex;
     gap:30px;
@@ -479,6 +494,16 @@ MÓDULO ADMINISTRADOR
 .badge-rechazado{
     background:#F8D7DA;
     color:var(--primary-dark);
+}
+
+.badge-registrado{
+    background:#E6E6E6;
+    color:#555;
+}
+
+.badge-contrato{
+    background:#D6E4FF;
+    color:#1B4CA6;
 }
 
 .motivo-rechazo{
@@ -680,6 +705,12 @@ RESPONSIVE
         flex:none;
         width:100%;
         max-height:none;
+}
+.admin-toolbar{
+        flex-direction:column;
+}
+.admin-toolbar .form-select{
+        flex:1 1 auto;
 }
 }
 
