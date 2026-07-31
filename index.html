@@ -295,24 +295,37 @@
 
                     <!-- CELULAR -->
 
-                    <div class="col-md-6 form-group">
+<div class="col-md-6 form-group">
 
-                        <label for="celular">
+    <label for="numero_celular">
 
-                            Número Celular
+        Número Celular
 
-                        </label>
-
-
-                        <input
-                            type="tel"
-                            id="celular"
-                            name="celular"
-                            class="form-control">
-
-                    </div>
+    </label>
 
 
+    <div class="documento-compuesto">
+
+        <input
+            type="text"
+            id="indicativo_celular"
+            name="indicativo_celular"
+            class="form-control input-indicativo"
+            placeholder="+57"
+            maxlength="5"
+            required>
+
+        <input
+            type="tel"
+            id="numero_celular"
+            name="numero_celular"
+            class="form-control"
+            placeholder="300 1234567"
+            required>
+
+    </div>
+
+</div>
                     <!-- CORREO -->
 
                     <div class="col-md-6 form-group">
