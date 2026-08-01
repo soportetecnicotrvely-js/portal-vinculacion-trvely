@@ -146,6 +146,21 @@ formulario.addEventListener("submit", async function (event) {
         const formData = new FormData(formulario);
 
         /*
+|--------------------------------------------------------------------------
+| HONEYPOT ANTISPAM
+|--------------------------------------------------------------------------
+*/
+
+const honeypot = formData.get("empresa_web");
+
+if (honeypot && honeypot.trim() !== "") {
+
+    console.warn("Intento de spam bloqueado.");
+
+    return;
+}
+
+        /*
         |--------------------------------------------------------------------------
         | 3. ARMAR DATOS DEL CANDIDATO
         |--------------------------------------------------------------------------
