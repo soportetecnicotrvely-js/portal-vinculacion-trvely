@@ -16,6 +16,7 @@ const listaCandidatosEl = document.getElementById("lista-candidatos");
 const detalleCandidatoEl = document.getElementById("detalle-candidato");
 const buscarInput = document.getElementById("buscar-candidato");
 const filtroEstadoSelect = document.getElementById("filtro-estado");
+const kpiTotal = document.getElementById("kpi-total");
 const kpiRegistrados = document.getElementById("kpi-registrados");
 const kpiRevision = document.getElementById("kpi-revision");
 const kpiRechazados = document.getElementById("kpi-rechazados");
