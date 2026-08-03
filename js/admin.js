@@ -16,6 +16,11 @@ const listaCandidatosEl = document.getElementById("lista-candidatos");
 const detalleCandidatoEl = document.getElementById("detalle-candidato");
 const buscarInput = document.getElementById("buscar-candidato");
 const filtroEstadoSelect = document.getElementById("filtro-estado");
+const kpiRegistrados = document.getElementById("kpi-registrados");
+const kpiRevision = document.getElementById("kpi-revision");
+const kpiRechazados = document.getElementById("kpi-rechazados");
+const kpiAprobados = document.getElementById("kpi-aprobados");
+const kpiContrato = document.getElementById("kpi-contrato");
 
 let candidatoSeleccionadoId = null;
 let candidatosCache = [];
@@ -138,7 +143,8 @@ async function cargarCandidatos() {
 
     documentosCache = documentos || [];
     candidatosCache = candidatos || [];
-
+    
+    actualizarKPIs();
     aplicarFiltros();
 }
 
