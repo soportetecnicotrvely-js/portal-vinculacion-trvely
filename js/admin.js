@@ -179,7 +179,33 @@ function contarPendientes(candidatoId) {
         return d.candidato_id === candidatoId && d.estado === "pendiente";
     }).length;
 }
+function actualizarKPIs() {
 
+    kpiRegistrados.textContent =
+        candidatosCache.filter(function(c){
+            return c.estado_proceso === "registrado";
+        }).length;
+
+    kpiRevision.textContent =
+        candidatosCache.filter(function(c){
+            return c.estado_proceso === "documentos_en_revision";
+        }).length;
+
+    kpiRechazados.textContent =
+        candidatosCache.filter(function(c){
+            return c.estado_proceso === "documentos_rechazados";
+        }).length;
+
+    kpiAprobados.textContent =
+        candidatosCache.filter(function(c){
+            return c.estado_proceso === "documentos_aprobados";
+        }).length;
+
+    kpiContrato.textContent =
+        candidatosCache.filter(function(c){
+            return c.estado_proceso === "contrato_enviado";
+        }).length;
+}
 
 function renderizarListaCandidatos(candidatos) {
 
