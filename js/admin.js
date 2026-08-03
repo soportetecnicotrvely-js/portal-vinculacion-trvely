@@ -173,6 +173,26 @@ function aplicarFiltros() {
 buscarInput.addEventListener("input", aplicarFiltros);
 filtroEstadoSelect.addEventListener("change", aplicarFiltros);
 
+document.querySelectorAll(".resumen-card").forEach(function(card){
+
+    card.addEventListener("click", function(){
+
+        const estado = card.dataset.estado;
+
+        // quitar selección anterior
+        document.querySelectorAll(".resumen-card").forEach(function(c){
+            c.classList.remove("activo");
+        });
+
+        card.classList.add("activo");
+
+        filtroEstadoSelect.value = estado;
+
+        aplicarFiltros();
+
+    });
+
+});
 
 function contarPendientes(candidatoId) {
     return documentosCache.filter(function (d) {
