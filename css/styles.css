@@ -666,81 +666,7 @@ AUTORIZACIONES
     border-color:var(--primary);
 }
 
-/*=====================================================
-            DASHBOARD ADMIN
-=====================================================*/
 
-.admin-resumen{
-
-    display:flex;
-
-    gap:18px;
-
-    margin:30px 0;
-
-    flex-wrap:wrap;
-
-}
-
-.resumen-card{
-
-    flex:1;
-
-    min-width:170px;
-
-    background:#ffffff;
-
-    border-radius:18px;
-
-    padding:22px;
-
-    text-align:center;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
-
-}
-
-.resumen-card:hover{
-
-    transform:translateY(-4px);
-
-}
-
-.resumen-card.activo{
-
-    border:3px solid #c2185b;
-
-}
-
-.resumen-numero{
-
-    display:block;
-
-    font-size:34px;
-
-    font-weight:800;
-
-    color:#c2185b;
-
-    line-height:1;
-
-}
-
-.resumen-texto{
-
-    display:block;
-
-    margin-top:12px;
-
-    color:#555;
-
-    font-weight:700;
-
-}
 /*======================================================
 BOTÓN FINAL
 ======================================================*/
@@ -865,4 +791,80 @@ RESPONSIVE
 .header-tagline{
         display:none;
 }
+}
+
+/*=====================================================
+            DASHBOARD ADMIN
+=====================================================*/
+
+.admin-resumen{
+
+    display:flex;
+
+    gap:18px;
+
+    margin:30px 0;
+
+    flex-wrap:wrap;
+
+}
+
+.resumen-card{
+
+    flex:1;
+
+    min-width:170px;
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.resumen-card:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.resumen-card.activo{
+
+    border:3px solid #c2185b;
+
+}
+
+.resumen-numero{
+
+    display:block;
+
+    font-size:34px;
+
+    font-weight:800;
+
+    color:#c2185b;
+
+    line-height:1;
+
+}
+
+.resumen-texto{
+
+    display:block;
+
+    margin-top:12px;
+
+    color:#555;
+
+    font-weight:700;
+
 }
