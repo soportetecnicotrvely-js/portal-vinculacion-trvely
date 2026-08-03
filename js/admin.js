@@ -202,6 +202,8 @@ function contarPendientes(candidatoId) {
 }
 function actualizarKPIs() {
 
+    kpiTotal.textContent = candidatosCache.length;
+
     kpiRegistrados.textContent =
         candidatosCache.filter(function(c){
             return c.estado_proceso === "registrado";
