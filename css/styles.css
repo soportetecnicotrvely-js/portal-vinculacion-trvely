@@ -380,6 +380,16 @@ reemplazan por un botón píldora con borde punteado.
     background:#FFF1E5;
 }
 
+/* Campo trampa anti-spam: oculto para personas, visible para bots */
+.campo-trampa{
+    position:absolute;
+    left:-9999px;
+    width:1px;
+    height:1px;
+    opacity:0;
+    pointer-events:none;
+}
+
 /*======================================================
 MÓDULO ADMINISTRADOR
 ======================================================*/
@@ -511,6 +521,37 @@ MÓDULO ADMINISTRADOR
     color:#8A1F2B;
     margin-top:6px;
     max-width:320px;
+}
+
+.acciones-reenvio{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    min-width:220px;
+}
+
+.acciones-reenvio .input-reenvio{
+    font-size:13px;
+    padding:8px 12px;
+    min-height:auto;
+}
+
+.acciones-reenvio .btn-reenviar{
+    padding:10px 20px;
+    font-size:13px;
+}
+
+.reenvio-mensaje{
+    font-size:12px;
+    margin:0;
+}
+
+.reenvio-ok{
+    color:#1B7A3D;
+}
+
+.reenvio-error{
+    color:var(--primary-dark);
 }
 
 .admin-detalle{
