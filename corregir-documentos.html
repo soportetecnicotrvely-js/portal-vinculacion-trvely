@@ -1,1 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trvely | Corregir Documentos</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@800&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+
+<!-- =====================================================
+                         HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div class="container header-content">
+
+        <img
+            src="assets/images/logo.png"
+            alt="Trvely"
+            class="logo">
+
+        <p class="header-tagline">
+            Corrige el documento que te pedimos revisar.
+        </p>
+
+    </div>
+
+</header>
+
+
+<main>
+
+<section class="seccion-formulario">
+
+    <div class="container" style="max-width:700px;">
+
+        <div class="section-heading">
+
+            <h2>Corregir Documentos</h2>
+
+            <p>
+                Ingresá tu número de documento y tu correo para ver si tenés
+                documentos por corregir.
+            </p>
+
+        </div>
+
+
+        <!-- =====================================================
+                        PASO 1: BUSCAR
+        ===================================================== -->
+
+        <div class="form-card" id="paso-buscar">
+
+            <h3>Identificate</h3>
+
+            <form id="form-buscar">
+
+                <!-- Campo trampa anti-spam -->
+                <input
+                    type="text"
+                    id="sitio_web"
+                    name="sitio_web"
+                    class="campo-trampa"
+                    tabindex="-1"
+                    autocomplete="off">
+
+                <div class="form-group">
+
+                    <label for="numero_documento_buscar">
+                        Número de Documento
+                    </label>
+
+                    <input
+                        type="text"
+                        id="numero_documento_buscar"
+                        class="form-control"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="correo_buscar">
+                        Correo Electrónico
+                    </label>
+
+                    <input
+                        type="email"
+                        id="correo_buscar"
+                        class="form-control"
+                        required>
+
+                </div>
+
+                <button type="submit" class="btn-primary-custom" style="width:100%;">
+                    Buscar mis documentos
+                </button>
+
+                <p id="buscar-error" class="login-error"></p>
+                <p id="buscar-vacio" class="login-error"></p>
+
+            </form>
+
+        </div>
+
+
+        <!-- =====================================================
+                    PASO 2: DOCUMENTOS RECHAZADOS
+        ===================================================== -->
+
+        <div class="form-card" id="paso-documentos" style="display:none;">
+
+            <h3 id="nombre-candidato-titulo"></h3>
+
+            <p style="color:#666;margin-bottom:25px;">
+                Subí la versión corregida de cada documento y tocá "Reenviar".
+                Va a quedar pendiente de revisión de nuevo.
+            </p>
+
+            <div id="lista-documentos-rechazados"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+                         FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <p>© Trvely</p>
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase.js"></script>
+
+<script src="js/corregir-documentos.js"></script>
+
+</body>
+
+</html>
