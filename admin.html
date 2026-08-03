@@ -85,35 +85,6 @@
         <div class="container">
 
             <div class="admin-header">
-<div class="admin-resumen">
-
-    <div class="resumen-card">
-        <span class="resumen-numero" id="total-registrados">0</span>
-        <span class="resumen-texto">Registrados</span>
-    </div>
-
-    <div class="resumen-card">
-        <span class="resumen-numero" id="total-revision">0</span>
-        <span class="resumen-texto">En revisión</span>
-    </div>
-
-    <div class="resumen-card">
-        <span class="resumen-numero" id="total-corregir">0</span>
-        <span class="resumen-texto">Por corregir</span>
-    </div>
-
-    <div class="resumen-card">
-        <span class="resumen-numero" id="total-aprobados">0</span>
-        <span class="resumen-texto">Aprobados</span>
-    </div>
-
-    <div class="resumen-card">
-        <span class="resumen-numero" id="total-contrato">0</span>
-        <span class="resumen-texto">Contrato</span>
-    </div>
-
-</div>
-                
                 <div>
                     <h2>Candidatos</h2>
                     <p>Seleccioná un candidato para revisar sus documentos.</p>
@@ -123,7 +94,38 @@
                     Cerrar sesión
                 </button>
             </div>
+<!-- =====================================================
+                RESUMEN DEL PROCESO
+===================================================== -->
 
+<div class="admin-resumen">
+
+    <div class="resumen-card" data-estado="registrado">
+        <span id="kpi-registrados" class="resumen-numero">0</span>
+        <span class="resumen-texto">Registrados</span>
+    </div>
+
+    <div class="resumen-card" data-estado="documentos_en_revision">
+        <span id="kpi-revision" class="resumen-numero">0</span>
+        <span class="resumen-texto">En revisión</span>
+    </div>
+
+    <div class="resumen-card" data-estado="documentos_rechazados">
+        <span id="kpi-rechazados" class="resumen-numero">0</span>
+        <span class="resumen-texto">Por corregir</span>
+    </div>
+
+    <div class="resumen-card" data-estado="documentos_aprobados">
+        <span id="kpi-aprobados" class="resumen-numero">0</span>
+        <span class="resumen-texto">Aprobados</span>
+    </div>
+
+    <div class="resumen-card" data-estado="contrato_enviado">
+        <span id="kpi-contrato" class="resumen-numero">0</span>
+        <span class="resumen-texto">Contrato enviado</span>
+    </div>
+
+</div>
             <div class="admin-toolbar">
 
                 <input
