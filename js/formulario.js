@@ -146,19 +146,17 @@ formulario.addEventListener("submit", async function (event) {
         const formData = new FormData(formulario);
 
         /*
-|--------------------------------------------------------------------------
-| HONEYPOT ANTISPAM
-|--------------------------------------------------------------------------
-*/
+        |--------------------------------------------------------------------------
+        | HONEYPOT ANTISPAM
+        |--------------------------------------------------------------------------
+        */
 
-const honeypot = formData.get("empresa_web");
+        const honeypot = formData.get("empresa_web");
 
-if (honeypot && honeypot.trim() !== "") {
-
-    console.warn("Intento de spam bloqueado.");
-
-    return;
-}
+        if (honeypot && honeypot.trim() !== "") {
+            console.warn("Intento de spam bloqueado.");
+            return;
+        }
 
         /*
         |--------------------------------------------------------------------------
@@ -271,57 +269,33 @@ if (honeypot && honeypot.trim() !== "") {
 
         /*
         |--------------------------------------------------------------------------
-        | 6. INSERTAR CANDIDATO
+        | 6. CREAR CANDIDATO (vía RPC, devuelve el id directamente)
         |--------------------------------------------------------------------------
         |
         | IMPORTANTE:
-        | No usamos .select() aquí porque el INSERT público funciona
-        | correctamente sin necesidad de permiso SELECT.
+        | Usamos una función RPC en vez de .insert() + .select() porque
+        | el rol anon no tiene permiso de SELECT sobre candidatos (por
+        | seguridad, para no exponer datos de otros candidatos). La
+        | función corre con permisos elevados y solo devuelve el id
+        | del registro que ella misma acaba de crear.
         |
         */
         console.log("DATOS QUE SE ENVIARÁN A SUPABASE:", candidatoData);
 
-        const { error: errorCandidato } =
+        const { data: candidatoId, error: errorCandidato } =
             await window.supabaseClient
-                .from("candidatos")
-                .insert(candidatoData);
+                .rpc("crear_candidato", { p_datos: candidatoData });
 
         if (errorCandidato) {
             console.error("ERROR COMPLETO DE SUPABASE:", errorCandidato);
             throw errorCandidato;
         }
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | 7. RECUPERAR EL ID DEL CANDIDATO
-        |--------------------------------------------------------------------------
-        */
-
-        const { data: candidatoInsertado, error: errorBusqueda } =
-            await window.supabaseClient
-                .from("candidatos")
-                .select("id")
-                .eq("numero_documento", candidatoData.numero_documento)
-                .eq("correo", candidatoData.correo)
-                .order("created_at", { ascending: false })
-                .limit(1)
-                .maybeSingle();
-
-
-        if (errorBusqueda) {
-            throw errorBusqueda;
-        }
-
-
-        if (!candidatoInsertado) {
+        if (!candidatoId) {
             throw new Error(
                 "El candidato fue creado, pero no fue posible recuperar su ID."
             );
         }
-
-
-        const candidatoId = candidatoInsertado.id;
 
 
         /*
