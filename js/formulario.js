@@ -60,10 +60,16 @@ const CAMPOS_ARCHIVO = {
     hoja_de_vida: "Hoja de Vida",
     certificacion_bancaria: "Certificacion Bancaria",
     rut: "RUT",
-    antecedentes_policia: "Antecedentes Policia",
-    antecedentes_procuraduria: "Antecedentes Procuraduria",
-    antecedentes_contraloria: "Antecedentes Contraloria",
-    procesos_judiciales: "Procesos Judiciales"
+    antecedentes_policia: "Antecedentes Policia"
+
+    /*
+    | DOCUMENTOS EN PAUSA (siguen existiendo en el enum de Supabase;
+    | para reactivarlos, descomentar aqui y en index.html):
+    |
+    | antecedentes_procuraduria: "Antecedentes Procuraduria",
+    | antecedentes_contraloria: "Antecedentes Contraloria",
+    | procesos_judiciales: "Procesos Judiciales"
+    */
 };
 
 const TAMANO_MAXIMO_ARCHIVO = 3 * 1024 * 1024; // 3 MB
