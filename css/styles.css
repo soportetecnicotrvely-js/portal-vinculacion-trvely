@@ -77,6 +77,31 @@ etiqueta, título y rejilla de puntos + isotipo oscuro decorativo.
     width:auto;
 }
 
+.header-right{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    flex-wrap:wrap;
+    gap:12px 22px;
+}
+
+.header-link{
+    font-family:var(--font-semibold);
+    font-weight:var(--fw-semibold);
+    font-size:14px;
+    color:#FFFFFF;
+    text-decoration:none;
+    white-space:nowrap;
+    border-bottom:1px solid rgba(244,229,210,.55);
+    padding-bottom:2px;
+    transition:.2s;
+}
+
+.header-link:hover{
+    color:var(--beige);
+    border-bottom-color:var(--beige);
+}
+
 .header-badge{
     font-family:var(--font-semibold);
     font-weight:var(--fw-semibold);
@@ -906,6 +931,12 @@ RESPONSIVE
 }
 .header-compact .header-badge{
         font-size:9.5px;
+}
+.header-right{
+        gap:8px 14px;
+}
+.header-link{
+        font-size:12.5px;
 }
 .section-heading h2{
         font-size:28px;
