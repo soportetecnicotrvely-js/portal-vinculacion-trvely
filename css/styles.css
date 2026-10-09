@@ -1,33 +1,6 @@
 
 
-/*======================================================
-VARIABLES GENERALES
-======================================================*/
-:root{
-    --primary:#C30045;
-    --primary-dark:#A6003B;
-    --background:#FFFFFF;
-    --text:#111111;
-    --gray:#F4F4F4;
-    --border:#E6E6E6;
-
-    --font-title:'Archivo Expanded', 'Montserrat', Arial, sans-serif;
-    --font-regular:'Montserrat', Arial, sans-serif;
-    --font-semibold:'Montserrat', Arial, sans-serif;
-    --font-bold:'Montserrat', Arial, sans-serif;
-    --font-extra-bold:'Montserrat', Arial, sans-serif;
-
-    --fw-semibold:600;
-    --fw-bold:700;
-    --fw-extra-bold:800;
-}
-
-/*======================================================
-FUENTES
-Todas las tipografías (Montserrat + Archivo Expanded)
-se cargan desde Google Fonts, ver <link> en index.html.
-No hay archivos .ttf/.otf locales.
-======================================================*/
+/* Paleta y tipografía: ver css/variables.css (fuente única). Fuente: Montserrat (Google Fonts, ver <link> en cada HTML). */
 
 /*======================================================
 RESET
@@ -49,80 +22,132 @@ body{
 }
 
 /*======================================================
-HEADER
+HEADER B · BURGUNDY
+Bloque burgundy con borde inferior redondeado, logo blanco,
+etiqueta, título y rejilla de puntos + isotipo oscuro decorativo.
 ======================================================*/
 .header{
-    background:#FFFFFF;
-    border-bottom:1px solid #EEEEEE;
+    position:relative;
+    background:var(--primary);
+    border-radius:0 0 48px 48px;
+    overflow:hidden;
+    color:#FFFFFF;
 }
 
-.header-content{
-    height:130px;
+.header::before{
+    content:"";
+    position:absolute;
+    right:-70px;
+    bottom:-150px;
+    width:440px;
+    height:440px;
+    background:url("../assets/images/isotipo-oscuro.png") center/contain no-repeat;
+    pointer-events:none;
+}
+
+.header-inner{
+    position:relative;
+    z-index:1;
+    padding-top:28px;
+    padding-bottom:52px;
+}
+
+.header-inner::before{
+    content:"";
+    position:absolute;
+    right:12px;
+    top:90px;
+    width:190px;
+    height:150px;
+    background-image:radial-gradient(rgba(244,229,210,.55) 2px, transparent 2.5px);
+    background-size:24px 24px;
+    opacity:.5;
+    pointer-events:none;
+}
+
+.header-top{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:30px;
+    gap:20px;
 }
 
 .logo{
-    height:100px;
+    height:54px;
     width:auto;
 }
 
-.header-tagline{
+.header-badge{
     font-family:var(--font-semibold);
     font-weight:var(--fw-semibold);
-    font-size:15px;
-    color:var(--text);
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.18em;
+    color:var(--beige);
+    border:1px solid rgba(244,229,210,.55);
+    background:rgba(255,255,255,.10);
+    border-radius:999px;
+    padding:8px 16px;
     margin:0;
-    max-width:420px;
+    white-space:nowrap;
 }
 
-/*======================================================
-REGISTRO DE ASESORES
-======================================================*/
-.registro{
-    padding-top:55px;
-    padding-bottom:70px;
+.header-copy{
+    margin-top:44px;
+    position:relative;
 }
 
 .titulo-registro{
     font-family:var(--font-title);
     font-weight:var(--fw-extra-bold);
-    font-size:58px;
-    color:var(--primary);
-    text-align:center;
-    margin-bottom:40px;
+    font-size:clamp(38px,6.2vw,66px);
+    letter-spacing:-.005em;
+    line-height:1.05;
+    color:#FFFFFF;
+    margin:0 0 16px;
 }
 
-.hero-container{
-    position:relative;
-    display:flex;
-    justify-content:center;
+.titulo-registro em{
+    font-style:normal;
+    color:var(--beige);
 }
 
-.hero-bg{
-    position:absolute;
-    width:92%;
-    height:78%;
-    top:60px;
-    background:#FFF1E5;
-    border-radius:24px;
+.header-tagline{
+    font-family:var(--font-semibold);
+    font-weight:500;
+    font-size:17px;
+    line-height:1.5;
+    color:var(--beige);
+    margin:0;
+    max-width:520px;
 }
 
-.hero-image{
-    position:relative;
-    z-index:2;
-    width:100%;
-    max-width:900px;
-    border-radius:18px;
+/* Variante compacta (admin / corregir documentos) */
+.header-compact{
+    border-radius:0 0 32px 32px;
+}
+
+.header-compact::before{
+    width:260px;
+    height:260px;
+    right:-40px;
+    bottom:-110px;
+}
+
+.header-compact .header-inner{
+    padding-top:22px;
+    padding-bottom:22px;
+}
+
+.header-compact .header-inner::before{
+    display:none;
 }
 
 /*======================================================
 SECCIONES
 ======================================================*/
 .seccion-formulario{
-    padding:80px 0;
+    padding:64px 0;
 }
 
 .section-heading{
@@ -133,13 +158,15 @@ SECCIONES
 .section-heading h2{
     font-family:var(--font-extra-bold);
     font-weight:var(--fw-extra-bold);
-    font-size:48px;
-    margin-bottom:15px;
+    font-size:40px;
+    letter-spacing:-.005em;
+    color:var(--ink);
+    margin-bottom:12px;
 }
 
 .section-heading p{
     font-size:16px;
-    color:#666;
+    color:var(--gray-text);
 }
 
 /*======================================================
@@ -150,17 +177,30 @@ al fondo blanco de la página, como en el diseño.
 ======================================================*/
 .form-card{
     background:#FFFFFF;
-    border:none;
-    border-radius:18px;
-    padding:45px;
-    box-shadow:none;
+    border:1px solid var(--border);
+    border-radius:var(--radius-card);
+    padding:36px;
+    box-shadow:var(--shadow-card);
 }
 
 .form-card h3{
+    display:flex;
+    align-items:center;
+    gap:12px;
     font-family:var(--font-extra-bold);
     font-weight:var(--fw-extra-bold);
-    color:var(--primary);
+    font-size:22px;
+    color:var(--ink);
     margin-bottom:30px;
+}
+
+.form-card h3::before{
+    content:"";
+    flex:0 0 auto;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--primary);
 }
 
 .form-group{
@@ -171,7 +211,8 @@ al fondo blanco de la página, como en el diseño.
     display:block;
     font-family:var(--font-semibold);
     font-weight:var(--fw-semibold);
-    font-size:13px;
+    font-size:12.5px;
+    color:var(--ink);
     margin-bottom:8px;
 }
 
@@ -179,17 +220,18 @@ al fondo blanco de la página, como en el diseño.
 .form-control,
 .form-select{
     background:var(--gray);
-    border-radius:12px;
+    border-radius:var(--radius-field);
     border:1px solid transparent;
     padding:12px 18px;
-    min-height:48px;
+    min-height:50px;
+    color:var(--ink);
 }
 
 .form-control:focus,
 .form-select:focus{
     background:#FFFFFF;
     border-color:var(--primary);
-    box-shadow:0 0 0 3px rgba(195,0,69,.1);
+    box-shadow:0 0 0 4px rgba(180,18,65,.12);
 }
 
 /* Campo compuesto: tipo de documento + número (como el "C.C" del mockup) */
@@ -237,7 +279,7 @@ al fondo blanco de la página, como en el diseño.
     height:20px;
     border-radius:20px;
     background:var(--gray);
-    border:1px solid #DCDCDC;
+    border:1px solid #D9C9B8;
     position:relative;
     cursor:pointer;
     transition:.2s;
@@ -269,7 +311,7 @@ al fondo blanco de la página, como en el diseño.
 SUBSECCIONES
 ======================================================*/
 .subsection{
-    border-top:1px solid #EEEEEE;
+    border-top:1px solid var(--border);
     margin-top:45px;
     padding-top:40px;
 }
@@ -305,18 +347,14 @@ reemplazan por un botón píldora con borde punteado.
 
 .documentos-imagen{
     flex:1 1 320px;
-    background:#FFF1E5;
-    border-radius:24px;
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:20px;
-    min-height:280px;
 }
 
 .documentos-imagen img{
     max-width:100%;
-    border-radius:18px;
+    border-radius:var(--radius-card);
 }
 
 .documentos-campos{
@@ -324,7 +362,7 @@ reemplazan por un botón píldora con borde punteado.
 }
 
 .documentos p{
-    color:#666;
+    color:var(--gray-text);
     margin-bottom:30px;
 }
 
@@ -336,7 +374,8 @@ reemplazan por un botón píldora con borde punteado.
     display:block;
     font-family:var(--font-semibold);
     font-weight:var(--fw-semibold);
-    color:var(--primary);
+    font-size:12.5px;
+    color:var(--ink);
     margin-bottom:8px;
 }
 
@@ -370,7 +409,7 @@ reemplazan por un botón píldora con borde punteado.
 }
 
 .file-upload-btn:hover{
-    background:#FFF1E5;
+    background:var(--beige);
 }
 
 .file-upload-btn .icono{
@@ -379,7 +418,7 @@ reemplazan por un botón píldora con borde punteado.
 
 .file-upload-btn.tiene-archivo{
     border-style:solid;
-    background:#FFF1E5;
+    background:var(--beige);
 }
 
 /* Campo trampa anti-spam: oculto para personas, visible para bots */
@@ -418,7 +457,7 @@ MÓDULO ADMINISTRADOR
 }
 
 .admin-header p{
-    color:#666;
+    color:var(--gray-text);
     font-size:14px;
 }
 
@@ -463,12 +502,12 @@ MÓDULO ADMINISTRADOR
 }
 
 .candidato-card:hover{
-    background:#EFEFEF;
+    background:var(--beige);
 }
 
 .candidato-card.activo{
     border-color:var(--primary);
-    background:#FFF1E5;
+    background:var(--beige);
 }
 
 .candidato-card h4{
@@ -480,7 +519,7 @@ MÓDULO ADMINISTRADOR
 
 .candidato-card p{
     font-size:12px;
-    color:#666;
+    color:var(--gray-text);
     margin-bottom:8px;
 }
 
@@ -509,8 +548,8 @@ MÓDULO ADMINISTRADOR
 }
 
 .badge-registrado{
-    background:#E6E6E6;
-    color:#555;
+    background:var(--beige);
+    color:var(--ink);
 }
 
 .badge-contrato{
@@ -561,7 +600,7 @@ MÓDULO ADMINISTRADOR
     min-width:0;
     background:#FFFFFF;
     border:1px solid var(--border);
-    border-radius:18px;
+    border-radius:var(--radius-card);
     padding:30px;
 }
 
@@ -585,7 +624,7 @@ MÓDULO ADMINISTRADOR
     justify-content:space-between;
     align-items:center;
     padding:18px 0;
-    border-bottom:1px solid #EEEEEE;
+    border-bottom:1px solid var(--border);
     gap:15px;
     flex-wrap:wrap;
 }
@@ -644,7 +683,7 @@ MÓDULO ADMINISTRADOR
 }
 
 .btn-ver:hover{
-    background:#E9E9E9;
+    background:var(--beige);
 }
 /*======================================================
 RESUMEN DASHBOARD
@@ -659,13 +698,13 @@ RESUMEN DASHBOARD
 
 .resumen-card{
     background:#fff;
-    border-radius:18px;
+    border-radius:var(--radius-card);
     padding:22px;
     text-align:center;
     cursor:pointer;
     transition:.25s;
     border:2px solid transparent;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    box-shadow:var(--shadow-card);
 }
 
 .resumen-card:hover{
@@ -689,7 +728,7 @@ RESUMEN DASHBOARD
     margin-top:12px;
     font-size:14px;
     font-weight:700;
-    color:#666;
+    color:var(--gray-text);
 }
 /*======================================================
 AUTORIZACIONES
@@ -703,11 +742,23 @@ AUTORIZACIONES
 .form-check{
     display:flex;
     align-items:flex-start;
-    gap:10px;
+    gap:14px;
 }
 
 .form-check-input{
-    margin-top:4px;
+    flex:0 0 auto;
+    width:24px;
+    height:24px;
+    margin-top:0;
+    border:2px solid #D9C9B8;
+    border-radius:8px;
+    background-color:#FFFFFF;
+    cursor:pointer;
+}
+
+.form-check-input:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 4px rgba(180,18,65,.12);
 }
 
 .form-check-input:checked{
@@ -715,11 +766,17 @@ AUTORIZACIONES
     border-color:var(--primary);
 }
 
+.form-check-label{
+    font-size:14px;
+    line-height:1.5;
+    color:var(--ink);
+}
+
 /*======================================================
 BOTÓN FINAL
 ======================================================*/
 .form-submit{
-    border-top:1px solid #EEEEEE;
+    border-top:1px solid var(--border);
     margin-top:50px;
     padding-top:50px;
     text-align:center;
@@ -728,7 +785,8 @@ BOTÓN FINAL
 .form-submit h2{
     font-family:var(--font-extra-bold);
     font-weight:var(--fw-extra-bold);
-    font-size:40px;
+    font-size:36px;
+    letter-spacing:-.005em;
     margin-bottom:25px;
 }
 
@@ -737,16 +795,25 @@ BOTÓN FINAL
     color:#FFFFFF;
     border:none;
     border-radius:30px;
-    padding:15px 55px;
-    font-family:var(--font-semibold);
-    font-weight:var(--fw-semibold);
+    padding:16px 56px;
+    font-family:var(--font-extra-bold);
+    font-weight:var(--fw-extra-bold);
+    font-size:16px;
+    box-shadow:var(--shadow-cta);
     cursor:pointer;
-    transition:.3s;
+    transition:.25s;
 }
 
 .btn-primary-custom:hover{
-    background:var(--primary-dark);
+    background:var(--primary);
     transform:translateY(-2px);
+    box-shadow:0 16px 30px rgba(180,18,65,.34);
+}
+
+.btn-primary-custom:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+    transform:none;
 }
 
 /*======================================================
@@ -755,29 +822,22 @@ FOOTER
 .footer{
     text-align:center;
     padding:30px;
-    border-top:1px solid #EEEEEE;
-    color:#777;
+    border-top:1px solid var(--border);
+    color:var(--gray-text);
 }
 
 /*======================================================
 RESPONSIVE
 ======================================================*/
 @media(max-width:992px){
-.titulo-registro{
-        font-size:46px;
-}
 .section-heading h2{
-        font-size:40px;
+        font-size:34px;
 }
 }
 
 @media(max-width:768px){
-.logo{
-        height:80px;
-}
 .header-tagline{
-        font-size:13px;
-        max-width:260px;
+        font-size:15px;
 }
 .form-card{
         padding:25px;
@@ -808,38 +868,51 @@ RESPONSIVE
 }
 
 @media(max-width:576px){
-.registro{
-        padding-top:35px;
+.header{
+        border-radius:0 0 32px 32px;
 }
-.titulo-registro{
-        font-size:34px;
-        line-height:1.1;
+.header::before{
+        width:300px;
+        height:300px;
+        right:-80px;
+        bottom:-110px;
+}
+.header-inner{
+        padding-top:22px;
+        padding-bottom:42px;
+}
+.header-inner::before{
+        top:80px;
+        width:120px;
+        height:100px;
+}
+.header-copy{
+        margin-top:30px;
+}
+.logo{
+        height:44px;
+}
+.header-badge{
+        font-size:10px;
+        padding:6px 12px;
+        letter-spacing:.14em;
+}
+.header-compact .header-badge{
+        font-size:9.5px;
 }
 .section-heading h2{
-        font-size:32px;
+        font-size:28px;
 }
 .section-heading p{
         font-size:14px;
 }
-.hero-bg{
-        top:25px;
-}
 .form-card{
-        padding:20px;
+        padding:22px;
 }
 .form-submit h2{
         font-size:27px;
 }
 .btn-primary-custom{
         width:100%;
-}
-.header-content{
-        flex-wrap:wrap;
-        height:auto;
-        padding:16px 0;
-        gap:12px;
-}
-.header-tagline{
-        display:none;
 }
 }
