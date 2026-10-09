@@ -108,6 +108,15 @@ formBuscar.addEventListener("submit", async function (event) {
 |--------------------------------------------------------------------------
 */
 
+function esc(valor) {
+    return String(valor === null || valor === undefined ? "" : valor)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
 function mostrarDocumentosRechazados(documentos) {
 
     nombreCandidatoTitulo.textContent =
@@ -123,10 +132,10 @@ function mostrarDocumentosRechazados(documentos) {
 
         fila.innerHTML =
             '<div>' +
-                '<span class="nombre-doc">' + doc.tipo_documento + '</span><br>' +
+                '<span class="nombre-doc">' + esc(doc.tipo_documento) + '</span><br>' +
                 '<span class="badge-estado badge-rechazado">Rechazado</span>' +
                 (doc.motivo_rechazo
-                    ? '<p class="motivo-rechazo">Motivo: ' + doc.motivo_rechazo + '</p>'
+                    ? '<p class="motivo-rechazo">Motivo: ' + esc(doc.motivo_rechazo) + '</p>'
                     : '') +
             '</div>' +
             '<div class="acciones-reenvio">' +

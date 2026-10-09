@@ -7,6 +7,18 @@
  * =====================================================
  */
 
+/**
+ * Escapa texto antes de insertarlo con innerHTML.
+ * Los datos los escribe el candidato: nunca deben interpretarse como HTML.
+ */
+function esc(valor) {
+    return String(valor === null || valor === undefined ? "" : valor)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
 const loginSection = document.getElementById("login-section");
 const dashboardSection = document.getElementById("dashboard-section");
 const loginForm = document.getElementById("login-form");
@@ -260,12 +272,12 @@ function renderizarListaCandidatos(candidatos) {
         }
 
         card.innerHTML =
-            "<h4>" + (candidato.nombre_completo || "Sin nombre") + "</h4>" +
-            "<p>" + (candidato.perfil || "") +
-            (candidato.ciudad_labor ? " · " + candidato.ciudad_labor : "") +
-            (candidato.numero_documento ? " · " + candidato.numero_documento : "") + "</p>" +
+            "<h4>" + esc(candidato.nombre_completo || "Sin nombre") + "</h4>" +
+            "<p>" + esc(candidato.perfil || "") +
+            (candidato.ciudad_labor ? " · " + esc(candidato.ciudad_labor) : "") +
+            (candidato.numero_documento ? " · " + esc(candidato.numero_documento) : "") + "</p>" +
             '<span class="badge-estado ' + (CLASES_ESTADO_PROCESO[estadoProceso] || "badge-registrado") + '">' +
-                (ETIQUETAS_ESTADO_PROCESO[estadoProceso] || estadoProceso) +
+                (ETIQUETAS_ESTADO_PROCESO[estadoProceso] || esc(estadoProceso)) +
             '</span>' +
             (pendientes > 0
                 ? ' <span class="badge-estado badge-pendiente">' + pendientes + ' por revisar</span>'
@@ -313,10 +325,10 @@ async function mostrarDetalleCandidato(candidato) {
     }
 
     let html =
-        "<h3>" + candidato.nombre_completo + "</h3>" +
+        "<h3>" + esc(candidato.nombre_completo) + "</h3>" +
         "<p style='color:#666;margin-bottom:25px;'>" +
-        (candidato.perfil || "") +
-        (candidato.ciudad_labor ? " · " + candidato.ciudad_labor : "") +
+        esc(candidato.perfil || "") +
+        (candidato.ciudad_labor ? " · " + esc(candidato.ciudad_labor) : "") +
         "</p>";
 
     if (!documentos || documentos.length === 0) {
@@ -328,20 +340,20 @@ async function mostrarDetalleCandidato(candidato) {
     documentos.forEach(function (doc) {
 
         html +=
-            '<div class="documento-revision" data-doc-id="' + doc.id + '">' +
+            '<div class="documento-revision" data-doc-id="' + esc(doc.id) + '">' +
                 '<div>' +
-                    '<span class="nombre-doc">' + doc.tipo_documento + '</span><br>' +
-                    '<span class="badge-estado badge-' + doc.estado + '">' +
-                        ETIQUETAS_ESTADO[doc.estado] +
+                    '<span class="nombre-doc">' + esc(doc.tipo_documento) + '</span><br>' +
+                    '<span class="badge-estado badge-' + esc(doc.estado) + '">' +
+                        esc(ETIQUETAS_ESTADO[doc.estado] || doc.estado) +
                     '</span>' +
                     (doc.estado === "rechazado" && doc.motivo_rechazo
-                        ? '<p class="motivo-rechazo">Motivo: ' + doc.motivo_rechazo + '</p>'
+                        ? '<p class="motivo-rechazo">Motivo: ' + esc(doc.motivo_rechazo) + '</p>'
                         : '') +
                 '</div>' +
                 '<div class="acciones">' +
-                    '<button class="btn-ver" data-accion="ver" data-ruta="' + doc.ruta_storage + '">Ver</button>' +
-                    '<button class="btn-aprobar" data-accion="aprobar" data-id="' + doc.id + '">Aprobar</button>' +
-                    '<button class="btn-rechazar" data-accion="rechazar" data-id="' + doc.id + '">Rechazar</button>' +
+                    '<button class="btn-ver" data-accion="ver" data-ruta="' + esc(doc.ruta_storage) + '">Ver</button>' +
+                    '<button class="btn-aprobar" data-accion="aprobar" data-id="' + esc(doc.id) + '">Aprobar</button>' +
+                    '<button class="btn-rechazar" data-accion="rechazar" data-id="' + esc(doc.id) + '">Rechazar</button>' +
                 '</div>' +
             '</div>';
     });
